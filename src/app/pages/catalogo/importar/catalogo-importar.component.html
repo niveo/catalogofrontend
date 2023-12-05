@@ -28,13 +28,13 @@
       </button>
     </nz-upload>
 
-    <button
-      nz-button
-      [nzType]="'primary'"
-      style="float: right"
-      (click)="submitForm()"
-    >
-      Enviar Catalogo
-    </button>
+    <div class="fx-row" style="float: right; gap: 10px; align-items: center">
+      @if(enviandoCatalogo){
+      <nz-spin nzSimple></nz-spin>
+      }
+      <button nz-button [nzType]="'primary'" (click)="submitForm()">
+        Enviar Catalogo
+      </button>
+    </div>
   </form>
 </div>

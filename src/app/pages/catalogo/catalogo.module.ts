@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { HttpClientModule } from '@angular/common/http';
 import { CatalogoService } from './catalogo.service';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { CatalogoService } from './catalogo.service';
     NzCheckboxModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NzSpinModule
   ],
   declarations: [CatalogoComponent, CatalogoImportarComponent],
   providers: [CatalogoService],

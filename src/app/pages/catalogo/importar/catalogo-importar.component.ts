@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { CatalogoService } from '../catalogo.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-catalogo-importar-component',
@@ -14,6 +15,7 @@ import { CatalogoService } from '../catalogo.service';
 })
 export class CatalogoImportarComponent {
   fileList: NzUploadFile[] = [];
+  enviandoCatalogo = false;
 
   constructor(
     private fb: NonNullableFormBuilder,
@@ -38,12 +40,14 @@ export class CatalogoImportarComponent {
 
   submitForm() {
     if (this.validateForm.valid) {
+      this.enviandoCatalogo = true;
       this.catalogoService
         .exportarCatalogo(
           this.fileList[0] as any,
           this.validateForm.value.descricao!,
           this.validateForm.value.ativo!
         )
+        .pipe(finalize(() => (this.enviandoCatalogo = false)))
         .subscribe({
           error(err) {
             console.log(err);
