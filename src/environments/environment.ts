@@ -19,17 +19,18 @@ const {
 console.log(audience);
 
 export const environment = {
-    production: true,
-    auth: {
-      domain,
-      clientId,
-      authorizationParams: {
-        ...(audience && audience !== 'YOUR_API_IDENTIFIER' ? { audience } : null),
-        redirect_uri: window.location.origin,
-      },
-      errorPath,
+  production: true,
+  auth: {
+    domain,
+    clientId,
+    authorizationParams: {
+      ...(audience && audience !== 'YOUR_API_IDENTIFIER' ? { audience } : null),
+      redirect_uri: window.location.origin,
     },
-    httpInterceptor: {
-      allowedList: [`${apiUri}/*`],
-    },
+    errorPath,
+  },
+  apiUri: apiUri,
+  httpInterceptor: {
+    allowedList: [`${apiUri}/*`],
+  },
 };

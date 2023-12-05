@@ -30,6 +30,7 @@ import { ErrorComponent } from './pages/error/error.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HttpsRequestInterceptor } from './interceptors/requests.interceptor';
+import { APP_CONFIG } from './utils/app-config';
 
 registerLocaleData(pt);
 
@@ -75,6 +76,7 @@ registerLocaleData(pt);
     }),
   ],
   providers: [
+    { provide: APP_CONFIG, useValue: environment },
     { provide: NZ_I18N, useValue: pt_BR },
     {
       provide: HTTP_INTERCEPTORS,

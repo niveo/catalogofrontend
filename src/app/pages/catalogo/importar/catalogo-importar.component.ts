@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import {
   FormControl,
@@ -6,8 +5,8 @@ import {
   NonNullableFormBuilder,
   Validators,
 } from '@angular/forms';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload';
+import { NzUploadFile } from 'ng-zorro-antd/upload';
+import { CatalogoService } from '../catalogo.service';
 
 @Component({
   selector: 'app-catalogo-importar-component',
@@ -18,7 +17,7 @@ export class CatalogoImportarComponent {
 
   constructor(
     private fb: NonNullableFormBuilder,
-    private readonly http: HttpClient
+    private readonly catalogoService: CatalogoService
   ) {}
 
   beforeUpload = (file: NzUploadFile): boolean => {
@@ -39,15 +38,12 @@ export class CatalogoImportarComponent {
 
   submitForm() {
     if (this.validateForm.valid) {
-      const formData = new FormData();
-      formData.append('file', this.fileList[0] as any);
-      this.http
-        .post('http://localhost:7000/catalogo/importar', formData, {
-          params: {
-            descricao: this.validateForm.value.descricao!,
-            ativo: this.validateForm.value.ativo!,
-          },
-        })
+      this.catalogoService
+        .exportarCatalogo(
+          this.fileList[0] as any,
+          this.validateForm.value.descricao!,
+          this.validateForm.value.ativo!
+        )
         .subscribe({
           error(err) {
             console.log(err);
