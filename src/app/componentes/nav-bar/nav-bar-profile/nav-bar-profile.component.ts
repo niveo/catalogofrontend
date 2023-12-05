@@ -37,18 +37,20 @@ export class NavBarProfileComponent {
     public readonly auth: AuthService,
     private router: Router
   ) {
-    this.auth.user$.subscribe((sb) => console.log(sb));
-    this.auth.appState$.subscribe((sb) => console.log(sb));
-    this.auth.error$.subscribe((sb) => console.log(sb));
-    this.auth.idTokenClaims$.subscribe((sb) => console.log(sb));
-    this.auth.isAuthenticated$.subscribe((sb) => console.log(sb));
-    this.auth.isLoading$.subscribe((sb) => console.log(sb));
+    this.auth.idTokenClaims$.subscribe((sb) => {
+      console.log(sb);
+      sessionStorage.setItem('TOKEN', sb?.__raw!);
+    });
   }
 
   logOut() {
-    this.auth.logout({
-      logoutParams: { returnTo: this.document.location.origin },
-    });
+    this.auth
+      .logout({
+        logoutParams: { returnTo: this.document.location.origin },
+      })
+      .subscribe(() => {
+        sessionStorage.removeItem('TOKEN');
+      });
   }
 
   goProfile() {

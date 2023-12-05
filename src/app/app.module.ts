@@ -29,6 +29,7 @@ import { CatalogoModule } from './pages/catalogo/catalogo.module';
 import { ErrorComponent } from './pages/error/error.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { HttpsRequestInterceptor } from './interceptors/requests.interceptor';
 
 registerLocaleData(pt);
 
@@ -47,7 +48,7 @@ registerLocaleData(pt);
     BrowserAnimationsModule,
 
     FontAwesomeModule,
-    
+
     CatalogoModule,
 
     NavBarComponent,
@@ -71,9 +72,6 @@ registerLocaleData(pt);
       httpInterceptor: {
         ...environment.httpInterceptor,
       },
-      authorizationParams: {
-        redirect_uri: window.location.origin,
-      },
     }),
   ],
   providers: [
@@ -95,6 +93,11 @@ registerLocaleData(pt);
           json: () => import('highlight.js/lib/languages/json'),
         },
       },
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpsRequestInterceptor,
+      multi: true,
     },
   ],
   bootstrap: [AppComponent],

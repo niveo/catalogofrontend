@@ -19,7 +19,7 @@ import { NavBarProfileComponent } from './nav-bar-profile/nav-bar-profile.compon
 export class NavBarComponent {
   constructor(public auth: AuthService) {}
 
-  logIn() {
+  logIn() { 
     this.auth.loginWithRedirect();
   }
 }

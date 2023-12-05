@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import {
   FormControl,
@@ -15,7 +16,10 @@ import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload';
 export class CatalogoImportarComponent {
   fileList: NzUploadFile[] = [];
 
-  constructor(private fb: NonNullableFormBuilder) {}
+  constructor(
+    private fb: NonNullableFormBuilder,
+    private readonly http: HttpClient
+  ) {}
 
   beforeUpload = (file: NzUploadFile): boolean => {
     this.validateForm.patchValue({ arquivo: file });
@@ -35,7 +39,23 @@ export class CatalogoImportarComponent {
 
   submitForm() {
     if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
+      const formData = new FormData();
+      formData.append('file', this.fileList[0] as any);
+      this.http
+        .post('http://localhost:7000/catalogo/importar', formData, {
+          params: {
+            descricao: this.validateForm.value.descricao!,
+            ativo: this.validateForm.value.ativo!,
+          },
+        })
+        .subscribe({
+          error(err) {
+            console.log(err);
+          },
+          next(value) {
+            console.log(value);
+          },
+        });
     } else {
       Object.values(this.validateForm.controls).forEach((control) => {
         if (control.invalid) {
