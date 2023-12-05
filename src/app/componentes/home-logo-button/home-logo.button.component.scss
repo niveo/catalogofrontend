@@ -1,0 +1,12 @@
+.home-cursor {
+  cursor: pointer;
+}
+
+:host {
+  width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    place-content: center;
+    color: white;
+}

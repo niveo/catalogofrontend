@@ -1,0 +1,46 @@
+<nz-avatar
+  *ngIf="auth.user$ | async as user"
+  nzIcon="user"
+  [nzSrc]="user.picture"
+  nz-tooltip
+  nzTooltipTitle="Profile"
+  class="profile-image"
+  nz-popover
+  [nzPopoverTitle]="contentTitle"
+  [(nzPopoverVisible)]="visible"
+  nzPopoverTrigger="click"
+  [nzPopoverContent]="contentTemplate"
+  nzPopoverPlacement="leftTop"
+></nz-avatar>
+
+<ng-template #contentTemplate>
+  <div class="fx-column">
+    <button
+      nz-button
+      nzType="text"
+      style="text-align: left"
+      (click)="goProfile()"
+    > 
+      <fa-icon [icon]="faUser" class="profile-icon"></fa-icon>
+      Perfil
+      <div class="fx-flex"></div>
+    </button>
+    <nz-divider [style.margin]="'5px 0'"></nz-divider>
+    <button nz-button nzType="text" style="text-align: left" (click)="logOut()">
+      <fa-icon [icon]="faSignOut" class="profile-icon"></fa-icon>
+      Log out
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #contentTitle>
+  <div class="fx-row profile-title-content" *ngIf="auth.user$ | async as user">
+    <div class="profile-image-avatar">
+      <nz-avatar nzIcon="user" [nzSrc]="user.picture"></nz-avatar>
+    </div>
+    <div class="fx-column">
+      <p class="profile-name-user">{{ user.name }}</p>
+      <p class="profile-email-user">{{ user.email }}</p>
+    </div>
+  </div>
+</ng-template>

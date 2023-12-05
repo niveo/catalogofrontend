@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+@mixin fx-border-box {
+    box-sizing: border-box;
+  }
+  
+
+.fx-border-box {
+    box-sizing: border-box;
+  }
+  
+  .fx-display-flex {
+    @include fx-border-box;
+    display: flex;
+  }
+
+@mixin fx-flex($percentual) {
+    @include fx-border-box;
+    flex: 1 1 $percentual;
+    max-width: $percentual;
+  }
+
+
+
+  .fx-row {
+    @extend .fx-display-flex;
+    flex-direction: row;
+  }
+  
+  .fx-column {
+    @extend .fx-display-flex;
+    flex-direction: column;
+  }
+
+  
+  .fx-flex {
+    @include fx-border-box;
+    //flex: 1 1 0%;
+    flex: 1 1 1e-9px;
+  }

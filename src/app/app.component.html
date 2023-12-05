@@ -1,4 +1,34 @@
-<!-- NG-ZORRO -->
-<a href="https://github.com/NG-ZORRO/ng-zorro-antd" target="_blank" style="display: flex;align-items: center;justify-content: center;height: 100%;width: 100%;">
-  <img height="300" src="https://img.alicdn.com/tfs/TB1X.qJJgHqK1RjSZFgXXa7JXXa-89-131.svg">
-</a>
+<nz-layout class="layout">
+  <nz-sider [nzCollapsed]="true">
+    <app-home-logo-button />
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li
+        nz-menu-item
+        routerLink="catalogo"
+        nz-tooltip
+        nzTooltipTitle="Catalogo"
+      >
+        <fa-icon [icon]="faImages"></fa-icon>
+      </li>
+      <li
+        nz-menu-item
+        routerLink="catalogo/importar"
+        nz-tooltip
+        nzTooltipTitle="Importar Catalogo"
+      >
+        <fa-icon [icon]="faUpload"></fa-icon>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout class="layout">
+    <nz-header>
+      <app-nav-bar-component />
+    </nz-header>
+    <nz-content>
+      <router-outlet></router-outlet>
+    </nz-content>
+    <nz-footer>
+      <app-footer-component />
+    </nz-footer>
+  </nz-layout>
+</nz-layout>
