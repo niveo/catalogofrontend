@@ -38,8 +38,7 @@ export class NavBarProfileComponent {
     private router: Router
   ) {
     this.auth.idTokenClaims$.subscribe((sb) => {
-      console.log(sb);
-      sessionStorage.setItem('TOKEN', sb?.__raw!);
+      sessionStorage.setItem('TOKEN', sb!.__raw!);
     });
   }
 

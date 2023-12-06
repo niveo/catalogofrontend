@@ -8,6 +8,9 @@ import {
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { CatalogoService } from '../catalogo.service';
 import { finalize } from 'rxjs';
+import { Router } from '@angular/router';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { MS1, MS2 } from '../../../contantes/messages';
 
 @Component({
   selector: 'app-catalogo-importar-component',
@@ -19,12 +22,14 @@ export class CatalogoImportarComponent {
 
   constructor(
     private fb: NonNullableFormBuilder,
-    private readonly catalogoService: CatalogoService
+    private readonly catalogoService: CatalogoService,
+    private readonly router: Router,
+    private readonly notification: NzNotificationService
   ) {}
 
   beforeUpload = (file: NzUploadFile): boolean => {
-    this.validateForm.patchValue({ arquivo: file });
     this.fileList = this.fileList.concat(file);
+    this.validateForm.patchValue({ arquivo: this.fileList });
     return false;
   };
 
@@ -43,17 +48,20 @@ export class CatalogoImportarComponent {
       this.enviandoCatalogo = true;
       this.catalogoService
         .exportarCatalogo(
-          this.fileList[0] as any,
+          this.fileList,
           this.validateForm.value.descricao!,
           this.validateForm.value.ativo!
         )
         .pipe(finalize(() => (this.enviandoCatalogo = false)))
         .subscribe({
-          error(err) {
+          error: (err) => {
             console.log(err);
+            this.notification.error('Importador', MS2);
           },
-          next(value) {
+          next: (value) => {
             console.log(value);
+            this.notification.success('Importador', MS1);
+            this.router.navigateByUrl('catalogo/detalhe/' + value);
           },
         });
     } else {

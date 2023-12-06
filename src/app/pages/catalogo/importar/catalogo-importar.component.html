@@ -18,9 +18,8 @@
     <nz-upload
       [(nzFileList)]="fileList"
       [nzBeforeUpload]="beforeUpload"
-      [nzAccept]="'.pdf'"
-      [nzMultiple]="false"
-      [nzDisabled]="fileList.length === 1"
+      [nzAccept]="['.png', '.jpg']"
+      [nzMultiple]="true"
     >
       <button nz-button>
         <span nz-icon nzType="upload"></span>
