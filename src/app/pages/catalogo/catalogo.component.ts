@@ -1,17 +1,25 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CatalogoService } from './catalogo.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, of, switchMap } from 'rxjs';
+import { Catalogo } from 'src/app/entities/catalogo';
 
 @Component({
   selector: 'app-catalogo-component',
   templateUrl: './catalogo.component.html',
 })
-export class CatalogoComponent implements OnDestroy, OnInit {
-  constructor(private readonly catalogoService: CatalogoService) {}
+export class CatalogoComponent implements OnInit {
+  catalogos$!: Observable<Catalogo[]>;
+
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly router: Router
+  ) {}
 
   ngOnInit() {
-    this.catalogoService.getAll().subscribe((sb) => console.log(sb));
+    this.catalogos$ = this.route.data.pipe(switchMap(({ data }) => of(data)));
   }
-  ngOnDestroy() {
-    sessionStorage.clear();
+
+  navegarDetalhe(id) {
+    this.router.navigateByUrl('catalogo/detalhe/' + id);
   }
 }

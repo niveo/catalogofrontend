@@ -1,1 +1,5 @@
-CATALOGO
+@for(item of catalogos$ | async; track item.id){
+<div (click)="navegarDetalhe(item.id)">
+  {{ item.descricao }}
+</div>
+}

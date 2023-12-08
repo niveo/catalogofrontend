@@ -6,15 +6,10 @@ const {
   authorizationParams: { audience },
   apiUri,
   errorPath,
-} = config as {
-  domain: string;
-  clientId: string;
-  authorizationParams: {
-    audience?: string;
-  };
-  apiUri: string;
-  errorPath: string;
-};
+  imageKitPublicKey,
+  imageKitUrlEndPoint,
+  imageKitAuthenticationEndpoint,
+} = config as any;
 
 console.log(audience);
 
@@ -33,4 +28,7 @@ export const environment = {
   httpInterceptor: {
     allowedList: [`${apiUri}/*`],
   },
+  imageKitPublicKey: imageKitPublicKey,
+  imageKitUrlEndPoint: imageKitUrlEndPoint,
+  imageKitAuthenticationEndpoint: imageKitAuthenticationEndpoint,
 };

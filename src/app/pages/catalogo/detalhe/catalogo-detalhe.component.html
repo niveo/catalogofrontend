@@ -1,0 +1,17 @@
+<div class="fx-row">
+  <div>A</div>
+  <div class="fx-column">
+    @for(item of catalogo!.paginas; track item.id){
+    <div class="fx-row">
+      <div>{{ item.pagina }}</div>
+      <img
+        [ngSrc]="catalogo?.identificador + '/'+ item.name!"
+        ngSrcset="200w, 400w, 600w, 800w, 1000w, 1200w, 1600w, 2000w, 3000w"
+        priority
+        width="150"
+        height="200"
+      />
+    </div>
+    }
+  </div>
+</div>

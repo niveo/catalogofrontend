@@ -31,6 +31,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { HttpsRequestInterceptor } from './interceptors/requests.interceptor';
 import { APP_CONFIG } from './utils/app-config';
+import { NgOptimizedImage, provideImageKitLoader } from '@angular/common';
 
 registerLocaleData(pt);
 
@@ -74,8 +75,10 @@ registerLocaleData(pt);
         ...environment.httpInterceptor,
       },
     }),
+    NgOptimizedImage,
   ],
   providers: [
+   
     { provide: APP_CONFIG, useValue: environment },
     { provide: NZ_I18N, useValue: pt_BR },
     {
