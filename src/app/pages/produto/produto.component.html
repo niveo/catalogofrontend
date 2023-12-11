@@ -4,14 +4,14 @@
       nz-button
       nzType="dashed"
       nzShape="circle"
-      nz-tooltip="Importar Catalogo"
+      nz-tooltip="Importar Produtos"
       (click)="navegarImportar()"
     >
       <fa-icon [icon]="faUpload"></fa-icon>
     </button>
   </div>
   <div>
-    @for(item of catalogos$ | async; track item.id){
+    @for(item of produtos$ | async; track item.id){
     <div (click)="navegarDetalhe(item.id)">
       {{ item.descricao }}
     </div>

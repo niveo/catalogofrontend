@@ -23,6 +23,12 @@ const routes: Routes = [
     data: { preload: true },
   },
   {
+    path: 'produto',
+    loadChildren: () =>
+      import('./pages/produto/produto.module').then((m) => m.ProdutoModule),
+    data: { preload: true },
+  },
+  {
     path: '',
     component: HomeComponent,
     pathMatch: 'full',

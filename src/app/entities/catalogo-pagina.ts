@@ -7,7 +7,7 @@ export class CatalogoPagina extends BaseEntity {
   size?: number;
   height?: number;
   width?: number;
-  name?: number;
+  name?: string;
   catalogo?: Catalogo;
   mapeamentos?: CatalogoPaginaMapeamento[];
   mapeados?: number = 0;

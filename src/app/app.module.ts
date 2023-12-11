@@ -15,7 +15,6 @@ import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
@@ -25,13 +24,13 @@ import { FooterComponent } from './componentes/footer/footer.component';
 import { HomeLogoButtonComponenet } from './componentes/home-logo-button/home-logo.button.component';
 import { LoadingComponent } from './componentes/loading.component';
 import { NavBarComponent } from './componentes/nav-bar/nav-bar.component';
+import { HttpsRequestInterceptor } from './interceptors/requests.interceptor';
 import { CatalogoModule } from './pages/catalogo/catalogo.module';
 import { ErrorComponent } from './pages/error/error.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ProdutoModule } from './pages/produto/produto.module';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { HttpsRequestInterceptor } from './interceptors/requests.interceptor';
 import { APP_CONFIG } from './utils/app-config';
-import { NgOptimizedImage, provideImageKitLoader } from '@angular/common';
 
 registerLocaleData(pt);
 
@@ -52,6 +51,7 @@ registerLocaleData(pt);
     FontAwesomeModule,
 
     CatalogoModule,
+    ProdutoModule,
 
     NavBarComponent,
     HomeLogoButtonComponenet,
@@ -60,7 +60,7 @@ registerLocaleData(pt);
 
     NzTypographyModule,
     NzMenuModule,
-    NzButtonModule, 
+    NzButtonModule,
     NzIconModule,
     NzAvatarModule,
     NzToolTipModule,
@@ -73,10 +73,8 @@ registerLocaleData(pt);
         ...environment.httpInterceptor,
       },
     }),
-    NgOptimizedImage,
   ],
   providers: [
-   
     { provide: APP_CONFIG, useValue: environment },
     { provide: NZ_I18N, useValue: pt_BR },
     {

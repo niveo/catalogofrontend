@@ -10,8 +10,10 @@
       >
         <ik-image
           style="text-align: center"
-          path="3_cjG7O1-N_W?updatedAt=1702067176133"
-          urlEndpoint="https://ik.imagekit.io/aspofp9v1/catalogo/53fb5cbe-5a8c-44b3-80e0-0362501d1efa/"
+          [path]="item.name"
+          [urlEndpoint]="
+            config.imageKitUrlEndPointCatalogo + catalogo.identificador + '/'
+          "
           [transformation]="[
             {
               height: '200',

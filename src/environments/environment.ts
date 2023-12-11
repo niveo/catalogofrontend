@@ -9,9 +9,9 @@ const {
   imageKitPublicKey,
   imageKitUrlEndPoint,
   imageKitAuthenticationEndpoint,
+  imageKitUrlEndPointCatalogo
 } = config as any;
-
-console.log(audience);
+ 
 
 export const environment = {
   production: true,
@@ -30,5 +30,6 @@ export const environment = {
   },
   imageKitPublicKey: imageKitPublicKey,
   imageKitUrlEndPoint: imageKitUrlEndPoint,
+  imageKitUrlEndPointCatalogo: imageKitUrlEndPointCatalogo,
   imageKitAuthenticationEndpoint: imageKitAuthenticationEndpoint,
 };

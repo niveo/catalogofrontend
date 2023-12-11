@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of, switchMap } from 'rxjs';
-import { Catalogo } from '../../entities/catalogo';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
+import { Produto } from 'src/app/entities/produto';
 
 @Component({
-  selector: 'app-catalogo-component',
-  templateUrl: './catalogo.component.html',
+  selector: 'app-produto-component',
+  templateUrl: './produto.component.html',
 })
-export class CatalogoComponent implements OnInit {
-  catalogos$!: Observable<Catalogo[]>;
+export class ProdutoComponent implements OnInit {
+  produtos$!: Observable<Produto[]>;
   faUpload = faUpload;
 
   constructor(
@@ -18,14 +18,14 @@ export class CatalogoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.catalogos$ = this.route.data.pipe(switchMap(({ data }) => of(data)));
+    this.produtos$ = this.route.data.pipe(switchMap(({ data }) => of(data)));
   }
 
   navegarDetalhe(id) {
-    this.router.navigateByUrl('catalogo/detalhe/' + id);
+    this.router.navigateByUrl('produto/detalhe/' + id);
   }
 
   navegarImportar() {
-    this.router.navigateByUrl('catalogo/importar');
+    this.router.navigateByUrl('produto/importar');
   }
 }

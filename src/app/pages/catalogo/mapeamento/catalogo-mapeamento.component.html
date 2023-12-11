@@ -1,1 +1,67 @@
-<div (click)="back()">VOLTAR</div>
+<div class="fx-row hf ovh">
+  <div class="fx-column gap-5 pd-10 fx-aic">
+    <button
+      nz-button
+      nzType="dashed"
+      nzShape="circle"
+      (click)="back()"
+      nz-tooltip="Voltar"
+    >
+      <fa-icon [icon]="faBackward"></fa-icon>
+    </button>
+
+    <button
+      nz-button
+      nzType="dashed"
+      nzShape="circle"
+      (click)="setDragModeMove()"
+      nz-tooltip="Movimentar"
+    >
+      <fa-icon [icon]="faHand"></fa-icon>
+    </button>
+
+    <button
+      nz-button
+      nzType="dashed"
+      nzShape="circle"
+      (click)="setDragModeCrop()"
+      nz-tooltip="Cortar"
+    >
+      <fa-icon [icon]="faCrop"></fa-icon>
+    </button>
+
+    <button
+      nz-button
+      nzType="dashed"
+      nzShape="circle"
+      (click)="cropperReset()"
+      nz-tooltip="Resetar"
+    >
+      <fa-icon [icon]="faCancel"></fa-icon>
+    </button>
+
+    <button
+      nz-button
+      nzType="dashed"
+      nzShape="circle"
+      (click)="salvar()"
+      nz-tooltip="Salvar"
+    >
+      <fa-icon [icon]="faFloppyDisk"></fa-icon>
+    </button>
+    <label nz-checkbox [(ngModel)]="salvarDireto" nz-tooltip="Salvar após o corte"></label>
+  </div>
+
+  <div class="fx-flex hf ova">
+    <angular-cropper
+      #angularCropper
+      [cropperOptions]="configCropper"
+      [imageUrl]="
+        config.imageKitUrlEndPointCatalogo +
+        identificador +
+        '/' +
+        catalogoPagina.name
+      "
+    ></angular-cropper>
+  </div>
+</div>
