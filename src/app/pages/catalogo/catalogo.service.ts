@@ -45,22 +45,6 @@ export class CatalogoService {
   }
 
   getCatalogo(id: number): Observable<Catalogo> {
-    const calCatalogo = this.http.get<Catalogo>(
-      `${this.conf.apiUri}/catalogo/${id}`
-    );
-    const calCatalogoPaginas = this.http.get<CatalogoPagina[]>(
-      `${this.conf.apiUri}/catalogo_pagina`,
-      {
-        params: {
-          idCatalogo: id,
-        },
-      }
-    );
-    return forkJoin([calCatalogo, calCatalogoPaginas]).pipe(
-      map((data) => {
-        data[0].paginas = data[1];
-        return data[0];
-      })
-    );
+    return this.http.get<Catalogo>(`${this.conf.apiUri}/catalogo/lazy/${id}`);
   }
 }

@@ -19,6 +19,10 @@ import { CatalogoComponent } from './catalogo.component';
 import { CatalogoService } from './catalogo.service';
 import { CatalogoDetalheComponent } from './detalhe/catalogo-detalhe.component';
 import { CatalogoImportarComponent } from './importar/catalogo-importar.component';
+import { environment } from 'src/environments/environment.development'; 
+import { ImagekitioAngularModule } from 'imagekit-angular';
+import { NzGridModule } from 'ng-zorro-antd/grid';
+import { FilesizebrPipe } from '../../pipes/filesizebr.pipe';
 
 @NgModule({
   imports: [
@@ -32,21 +36,18 @@ import { CatalogoImportarComponent } from './importar/catalogo-importar.componen
     ReactiveFormsModule,
     HttpClientModule,
     NzSpinModule,
-    NgOptimizedImage,
+    NzGridModule,
+    FilesizebrPipe,
+    ImagekitioAngularModule.forRoot({
+      publicKey: environment.imageKitPublicKey,
+      urlEndpoint: environment.imageKitUrlEndPoint,
+    }),
   ],
   declarations: [
     CatalogoComponent,
     CatalogoDetalheComponent,
     CatalogoImportarComponent,
   ],
-  providers: [
-    CatalogoService,
-    {
-      provide: IMAGE_LOADER,
-      useValue: (config: ImageLoaderConfig) => {
-        return `https://ik.imagekit.io/aspofp9v1/catalogo/${config.src}`;
-      },
-    },
-  ],
+  providers: [CatalogoService],
 })
 export class CatalogoModule {}

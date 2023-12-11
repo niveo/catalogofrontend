@@ -33,11 +33,7 @@ export class CatalogoImportarComponent {
     return false;
   };
 
-  validateForm: FormGroup<{
-    descricao: FormControl<string>;
-    ativo: FormControl<boolean>;
-    arquivo: FormControl<any>;
-  }> = this.fb.group({
+  validateForm: FormGroup = this.fb.group({
     descricao: ['', [Validators.required]],
     ativo: [false],
     arquivo: [null, [Validators.required]],

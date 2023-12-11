@@ -10,4 +10,5 @@ export class CatalogoPagina extends BaseEntity {
   name?: number;
   catalogo?: Catalogo;
   mapeamentos?: CatalogoPaginaMapeamento[];
+  mapeados?: number = 0;
 }

@@ -1,16 +1,28 @@
-<div class="fx-row">
-  <div>A</div>
-  <div class="fx-column">
+<div class="fx-row" style="padding: 10px">
+  <div>{{ catalogo.identificador }}</div>
+  <div nz-row [nzGutter]="[10, 10]">
     @for(item of catalogo!.paginas; track item.id){
-    <div class="fx-row">
-      <div>{{ item.pagina }}</div>
-      <img
-        [ngSrc]="catalogo?.identificador + '/'+ item.name!"
-        ngSrcset="200w, 400w, 600w, 800w, 1000w, 1200w, 1600w, 2000w, 3000w"
-        priority
-        width="150"
-        height="200"
-      />
+    <div nz-col [nzXs]="{ span: 6, offset: 2 }" [nzLg]="{ span: 6, offset: 2 }">
+      <div class="fx-column" style="border: 1px solid #2874a6; padding: 5px; cursor: pointer;">
+        <ik-image
+          style="text-align: center"
+          path="3_cjG7O1-N_W?updatedAt=1702067176133"
+          urlEndpoint="https://ik.imagekit.io/aspofp9v1/catalogo/53fb5cbe-5a8c-44b3-80e0-0362501d1efa/"
+          [transformation]="[
+            {
+              height: '200',
+              width: '150'
+            }
+          ]"
+        ></ik-image>
+        <strong>{{ item.name }}</strong>
+        <div class="fx-row">
+          {{ item.size | filesizebr }}
+          •
+          {{ item.width }}x{{ item.height }}
+        </div>
+        <div>Mapeados: {{ item.mapeados }}</div>
+      </div>
     </div>
     }
   </div>
