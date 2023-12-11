@@ -24,7 +24,10 @@ export class CatalogoDetalheComponent implements OnInit {
     });
   }
 
- 
+  navegarMapeamento(id: number) {
+    this.router.navigateByUrl('catalogo/mapeamento/' + id);
+  }
+
   onResize({ width, height, direction }: NzResizeEvent): void {
     cancelAnimationFrame(this.id);
     this.id = requestAnimationFrame(() => {

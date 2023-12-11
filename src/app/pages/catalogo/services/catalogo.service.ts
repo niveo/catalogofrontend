@@ -2,17 +2,11 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import {
   Observable,
-  catchError,
-  concat,
-  forkJoin,
-  map,
-  of,
-  switchMap,
+  catchError
 } from 'rxjs';
-import { Catalogo } from '../../entities/catalogo';
-import { APP_CONFIG, IConfigToken } from '../../utils/app-config';
-import { handleError } from '../../utils/handle-error.utils';
-import { CatalogoPagina } from 'src/app/entities/catalogo-pagina';
+import { Catalogo } from '../../../entities/catalogo';
+import { APP_CONFIG, IConfigToken } from '../../../utils/app-config';
+import { handleError } from '../../../utils/handle-error.utils';
 
 @Injectable()
 export class CatalogoService {

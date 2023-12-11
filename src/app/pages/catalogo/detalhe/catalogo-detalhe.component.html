@@ -1,9 +1,13 @@
 <div class="fx-row" style="padding: 10px">
-  <div>{{ catalogo.identificador }}</div>
+  <div>{{ catalogo.descricao }}</div>
   <div nz-row [nzGutter]="[10, 10]">
     @for(item of catalogo!.paginas; track item.id){
     <div nz-col [nzXs]="{ span: 6, offset: 2 }" [nzLg]="{ span: 6, offset: 2 }">
-      <div class="fx-column" style="border: 1px solid #2874a6; padding: 5px; cursor: pointer;">
+      <div
+        class="fx-column"
+        style="border: 1px solid #2874a6; padding: 5px; cursor: pointer"
+        (click)="navegarMapeamento(item.id)"
+      >
         <ik-image
           style="text-align: center"
           path="3_cjG7O1-N_W?updatedAt=1702067176133"
@@ -17,11 +21,24 @@
         ></ik-image>
         <strong>{{ item.name }}</strong>
         <div class="fx-row">
-          {{ item.size | filesizebr }}
-          •
-          {{ item.width }}x{{ item.height }}
+          <span class="fx-flex">{{ item.size | filesizebr }}</span>
+          <span class="fx-flex">{{ item.width }}x{{ item.height }}</span>
         </div>
-        <div>Mapeados: {{ item.mapeados }}</div>
+        <div class="fx-row">
+          <span
+            class="fx-flex paginamapeamento"
+            nz-tooltip
+            nzTooltipTitle="Pagina"
+          >
+            {{ item.pagina }}
+          </span>
+          <span
+            class="fx-flex paginamapeamento"
+            nz-tooltip
+            nzTooltipTitle="Mapeados"
+            >{{ item.mapeados }}</span
+          >
+        </div>
       </div>
     </div>
     }

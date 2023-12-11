@@ -60,9 +60,7 @@ registerLocaleData(pt);
 
     NzTypographyModule,
     NzMenuModule,
-
-    NzButtonModule,
-    NzLayoutModule,
+    NzButtonModule, 
     NzIconModule,
     NzAvatarModule,
     NzToolTipModule,

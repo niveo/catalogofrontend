@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
-import { CatalogoService } from '../catalogo.service';
+import { CatalogoService } from '../services/catalogo.service';
 import { finalize } from 'rxjs';
 import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
