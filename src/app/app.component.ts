@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { faImages, faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faImages, faUpload, faHome } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +8,22 @@ import { faImages, faUpload } from '@fortawesome/free-solid-svg-icons';
 })
 export class AppComponent {
   title = 'catalogofrontend';
-  faImages = faImages;
-  faUpload = faUpload;
+
+  menus = [
+    {
+      link: '/',
+      icon: faHome,
+      descricao: 'Home',
+    },
+    {
+      link: 'catalogo',
+      icon: faImages,
+      descricao: 'Catalogo',
+    },
+    {
+      link: 'catalogo/importar',
+      icon: faUpload,
+      descricao: 'Importar Catalogo',
+    },
+  ];
 }

@@ -1,34 +1,26 @@
-<nz-layout class="layout">
-  <nz-sider [nzCollapsed]="true">
-    <app-home-logo-button />
-    <ul nz-menu nzTheme="dark" nzMode="inline">
-      <li
-        nz-menu-item
-        routerLink="catalogo"
-        nz-tooltip
-        nzTooltipTitle="Catalogo"
-      >
-        <fa-icon [icon]="faImages"></fa-icon>
-      </li>
-      <li
-        nz-menu-item
-        routerLink="catalogo/importar"
-        nz-tooltip
-        nzTooltipTitle="Importar Catalogo"
-      >
-        <fa-icon [icon]="faUpload"></fa-icon>
-      </li>
-    </ul>
-  </nz-sider>
-  <nz-layout class="layout">
-    <nz-header>
-      <app-nav-bar-component />
-    </nz-header>
-    <nz-content>
+<div class="fx-row hf wf">
+  <div class="fx-column hf fx-aic pdb-10">
+    <div class="fx-flex fx-column wf">
+      <ul nz-menu nzMode="inline">
+        @for(item of menus; track item.link){
+        <li
+          nz-menu-item
+          [routerLink]="item.link"
+          nz-tooltip
+          [nzTooltipTitle]="item.descricao"
+          nzTooltipPlacement="rightTop"
+        >
+          <fa-icon [icon]="item.icon"></fa-icon>
+        </li>
+        }
+      </ul>
+    </div>
+    <app-nav-bar-component />
+  </div>
+  <div class="fx-flex fx-column">
+    <div class="fx-flex">
       <router-outlet></router-outlet>
-    </nz-content>
-    <nz-footer>
-      <app-footer-component />
-    </nz-footer>
-  </nz-layout>
-</nz-layout>
+    </div>
+    <app-footer-component />
+  </div>
+</div>
