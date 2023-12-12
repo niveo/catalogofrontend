@@ -23,16 +23,16 @@
     >
       <button nz-button>
         <span nz-icon nzType="upload"></span>
-        Carregar .PDF
+        Carregar Imagens
       </button>
     </nz-upload>
 
-    <div class="fx-row" style="float: right; gap: 10px; align-items: center">
+    <div class="fx-row" style="justify-content: end; gap: 10px; align-items: center">
       @if(enviandoCatalogo){
       <nz-spin nzSimple></nz-spin>
       }
       <button nz-button [nzType]="'primary'" (click)="submitForm()">
-        Enviar Catalogo
+        Enviar Arquivos
       </button>
     </div>
   </form>

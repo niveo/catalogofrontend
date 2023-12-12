@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of, switchMap } from 'rxjs';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import { Produto } from 'src/app/entities/produto';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { ProdutoImportarComponent } from './importar/produto-importar.component';
 
 @Component({
   selector: 'app-produto-component',
@@ -14,7 +16,8 @@ export class ProdutoComponent implements OnInit {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly router: Router
+    private readonly router: Router,
+    private modalService: NzModalService
   ) {}
 
   ngOnInit() {
@@ -26,6 +29,9 @@ export class ProdutoComponent implements OnInit {
   }
 
   navegarImportar() {
-    this.router.navigateByUrl('produto/importar');
+    this.modalService.create({
+      nzContent: ProdutoImportarComponent,
+      nzFooter: null,
+    });
   }
 }

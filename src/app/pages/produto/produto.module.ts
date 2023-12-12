@@ -3,16 +3,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ImagekitioAngularModule } from 'imagekit-angular';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
-import { environment } from 'src/environments/environment.development';
+import { ProdutoImportarComponent } from './importar/produto-importar.component';
 import { ProdutoRoutingModule } from './produto-routing.module';
 import { ProdutoComponent } from './produto.component';
 import { ProdutoService } from './services/produto.service';
@@ -32,12 +32,9 @@ import { ProdutoService } from './services/produto.service';
     NzSpinModule,
     NzGridModule,
     NzToolTipModule,
-    ImagekitioAngularModule.forRoot({
-      publicKey: environment.imageKitPublicKey,
-      urlEndpoint: environment.imageKitUrlEndPoint,
-    }),
+    NzModalModule,
   ],
-  declarations: [ProdutoComponent],
+  declarations: [ProdutoComponent, ProdutoImportarComponent],
   providers: [ProdutoService],
 })
 export class ProdutoModule {}

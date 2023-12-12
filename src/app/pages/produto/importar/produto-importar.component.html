@@ -1,0 +1,22 @@
+<div class="fx-column">
+  <nz-upload
+    [(nzFileList)]="fileList"
+    [nzBeforeUpload]="beforeUpload"
+    [nzAccept]="['.csv']"
+    [nzMultiple]="false"
+  >
+    <button nz-button [disabled]="fileList.length === 1">
+      <span nz-icon nzType="upload"></span>
+      Carregar .PDF
+    </button>
+  </nz-upload>
+
+  <div class="fx-row" style="justify-content: end; gap: 10px; align-items: center">
+    @if(enviandoRegistro){
+    <nz-spin nzSimple></nz-spin>
+    }
+    <button nz-button [nzType]="'primary'" (click)="submitForm()">
+      Enviar Arquivo
+    </button>
+  </div>
+</div>
