@@ -54,6 +54,16 @@
       [(ngModel)]="salvarDireto"
       nz-tooltip="Lançar após o corte"
     ></label>
+
+    <button
+      nz-button
+      nzType="dashed"
+      nzShape="circle"
+      (click)="visualizarProdutosCordenadas()"
+      nz-tooltip="Produtos Cordenadas"
+    >
+      <fa-icon [icon]="faList"></fa-icon>
+    </button>
   </div>
 
   <div class="fx-flex hf ova">
@@ -68,4 +78,4 @@
       "
     ></angular-cropper>
   </div>
-</div> 
+</div>

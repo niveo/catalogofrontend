@@ -32,8 +32,13 @@
           <h5>{{ item.referencia }}-{{ item.descricao }}</h5>
           <ul nz-list-item-actions>
             <nz-list-item-action>
-              <button nz-button nzType="dashed" nzShape="circle">
-                <fa-icon [icon]="faTrash" (click)="remover(item)"></fa-icon>
+              <button
+                nz-button
+                nzType="dashed"
+                nzShape="circle"
+                (click)="remover(item)"
+              >
+                <fa-icon [icon]="faTrash"></fa-icon>
               </button>
             </nz-list-item-action>
           </ul>

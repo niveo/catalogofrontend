@@ -1,0 +1,40 @@
+<nz-list nzItemLayout="horizontal" [nzLoading]="loading">
+  @for(item of produtos$ | async; track i; let i = $index){ @for(produto of
+  item.produtos; track iprod; let iprod = $index){
+
+  <nz-list-item>
+    <nz-list-item-meta [nzDescription]="produto.descricao">
+      <nz-list-item-meta-title>
+        <strong>{{ produto.referencia }}</strong>
+      </nz-list-item-meta-title>
+    </nz-list-item-meta>
+    <ul nz-list-item-actions>
+      <nz-list-item-action>
+        <button
+          nz-button
+          nzType="dashed"
+          nzShape="circle"  
+          nz-tooltip="Visualizar Cordenada"
+          (click)="visualizar(item)"
+        >
+          <fa-icon [icon]="faUpRightFromSquare"></fa-icon>
+        </button>
+      </nz-list-item-action>
+      <nz-list-item-action>
+        <button
+          nz-button
+          nzType="dashed"
+          nzShape="circle"
+          nz-tooltip="Remover Cordenada"
+          (click)="remover(item, produto)"
+        >
+          <fa-icon [icon]="faTrash"></fa-icon>
+        </button>
+      </nz-list-item-action>
+    </ul>
+  </nz-list-item>
+
+  } } @empty {
+  <nz-list-empty></nz-list-empty>
+  }
+</nz-list>

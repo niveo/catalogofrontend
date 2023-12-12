@@ -27,6 +27,7 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { CatalogoMapeamentoCordenadasComponent } from './mapeamento/cordenadas/catalogo-mapeamento-cordenadas.component';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { CatalogoPaginaMapeamentoService } from './services/catalogo-pagina-mapeamento.service';
+import { MapeamentoProdutosCordenadaComponent } from './mapeamento/produtos-cordenadas/mapeamento-produtos-cordenada.component';
 
 @NgModule({
   imports: [
@@ -60,7 +61,12 @@ import { CatalogoPaginaMapeamentoService } from './services/catalogo-pagina-mape
     CatalogoImportarComponent,
     CatalogoMapeamentoComponent,
     CatalogoMapeamentoCordenadasComponent,
+    MapeamentoProdutosCordenadaComponent,
   ],
-  providers: [CatalogoService, CatalogoPaginaService, CatalogoPaginaMapeamentoService],
+  providers: [
+    CatalogoService,
+    CatalogoPaginaService,
+    CatalogoPaginaMapeamentoService,
+  ],
 })
 export class CatalogoModule {}

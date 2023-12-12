@@ -1,48 +1,49 @@
-<div class="fx-row" style="padding: 10px">
-  <div>{{ catalogo.descricao }}</div>
-  <div nz-row [nzGutter]="[10, 10]">
-    @for(item of catalogo!.paginas; track item.id){
-    <div nz-col [nzXs]="{ span: 6, offset: 2 }" [nzLg]="{ span: 6, offset: 2 }">
-      <div
-        class="fx-column"
-        style="border: 1px solid #2874a6; padding: 5px; cursor: pointer"
-        (click)="navegarMapeamento(item.id)"
-      >
-        <ik-image
-          style="text-align: center"
-          [path]="item.name"
-          [urlEndpoint]="
-            config.imageKitUrlEndPointCatalogo + catalogo.identificador + '/'
-          "
-          [transformation]="[
-            {
-              height: '200',
-              width: '150'
-            }
-          ]"
-        ></ik-image>
-        <strong>{{ item.name }}</strong>
-        <div class="fx-row">
-          <span class="fx-flex">{{ item.size | filesizebr }}</span>
-          <span class="fx-flex">{{ item.width }}x{{ item.height }}</span>
-        </div>
-        <div class="fx-row">
-          <span
-            class="fx-flex paginamapeamento"
-            nz-tooltip
-            nzTooltipTitle="Pagina"
-          >
-            {{ item.pagina }}
-          </span>
-          <span
-            class="fx-flex paginamapeamento"
-            nz-tooltip
-            nzTooltipTitle="Mapeados"
-            >{{ item.mapeados }}</span
-          >
+<div class="fx-row hf ovh">
+  <div class="wf hf ova">
+    <div nz-row class="gap-5 pd-5">
+      @for(item of catalogo!.paginas; track item.id){
+      <div nz-col  [nzSpan]="12 / 2">
+        <div
+          class="fx-column"
+          style="border: 1px solid #2874a6; padding: 5px; cursor: pointer"
+          (click)="navegarMapeamento(item.id)"
+        >
+          <ik-image
+            style="text-align: center"
+            [path]="item.name"
+            [urlEndpoint]="
+              config.imageKitUrlEndPointCatalogo + catalogo.identificador + '/'
+            "
+            [transformation]="[
+              {
+                height: '200',
+                width: '150'
+              }
+            ]"
+          ></ik-image>
+          <strong>{{ item.name }}</strong>
+          <div class="fx-row">
+            <span class="fx-flex">{{ item.size | filesizebr }}</span>
+            <span class="fx-flex">{{ item.width }}x{{ item.height }}</span>
+          </div>
+          <div class="fx-row">
+            <span
+              class="fx-flex paginamapeamento"
+              nz-tooltip
+              nzTooltipTitle="Pagina"
+            >
+              {{ item.pagina }}
+            </span>
+            <span
+              class="fx-flex paginamapeamento"
+              nz-tooltip
+              nzTooltipTitle="Mapeados"
+              >{{ item.mapeados }}</span
+            >
+          </div>
         </div>
       </div>
+      }
     </div>
-    }
   </div>
 </div>

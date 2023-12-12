@@ -1,4 +1,3 @@
-import { CatalogoService } from './../services/catalogo.service';
 import { Location } from '@angular/common';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
@@ -8,13 +7,15 @@ import {
   faCrop,
   faFloppyDisk,
   faHand,
+  faList,
 } from '@fortawesome/free-solid-svg-icons';
 import { CropperComponent } from 'angular-cropperjs';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import { APP_CONFIG, IConfigToken } from 'src/app/utils/app-config';
+import { CatalogoPaginaMapeamentoService } from '../services/catalogo-pagina-mapeamento.service';
 import { CatalogoPagina } from './../../../entities/catalogo-pagina';
 import { CatalogoMapeamentoCordenadasComponent } from './cordenadas/catalogo-mapeamento-cordenadas.component';
-import { CatalogoPaginaMapeamentoService } from '../services/catalogo-pagina-mapeamento.service';
+import { MapeamentoProdutosCordenadaComponent } from './produtos-cordenadas/mapeamento-produtos-cordenada.component';
 @Component({
   selector: 'app-catalogo-mapeamento-component',
   templateUrl: './catalogo-mapeamento.component.html',
@@ -25,6 +26,7 @@ export class CatalogoMapeamentoComponent implements OnInit {
   faCrop = faCrop;
   faCancel = faCancel;
   faFloppyDisk = faFloppyDisk;
+  faList = faList;
 
   configCropper: any = { checkCrossOrigin: false, autoCrop: false };
   identificador: string;
@@ -37,7 +39,6 @@ export class CatalogoMapeamentoComponent implements OnInit {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private router: Router,
     private location: Location,
     @Inject(APP_CONFIG) public readonly config: IConfigToken,
     private drawerService: NzDrawerService,
@@ -71,6 +72,31 @@ export class CatalogoMapeamentoComponent implements OnInit {
   cropperReset() {
     this.angularCropper.cropper.clear();
     this.angularCropper.cropper.reset();
+  }
+
+  visualizarProdutosCordenadas() {
+    this.drawerService
+      .create({
+        nzContent: MapeamentoProdutosCordenadaComponent,
+        nzData: {
+          id: this.catalogoPagina.id,
+        },
+      })
+      .afterClose.subscribe((data) => {
+        if (data) {
+          setTimeout(() => {
+            this.cropperReset();
+            this.angularCropper.cropper.crop();
+            this.angularCropper.cropper.setData({
+              x: data.inicialPosicalX,
+              y: data.inicialPosicalY,
+              width: data.width,
+              height: data.height,
+              rotate: 0,
+            });
+          });
+        }
+      });
   }
 
   iniciarLancarCordenadas() {
