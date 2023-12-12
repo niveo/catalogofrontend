@@ -1,9 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import {
-  Observable,
-  catchError
-} from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 import { Catalogo } from '../../../entities/catalogo';
 import { APP_CONFIG, IConfigToken } from '../../../utils/app-config';
 import { handleError } from '../../../utils/handle-error.utils';
@@ -25,15 +22,12 @@ export class CatalogoService {
       formData.append('files', f);
     });
 
-    let headers = new HttpHeaders();
-
     return this.http
       .post(`${this.conf.apiUri}/catalogo/importar`, formData, {
         params: {
           descricao: descricao,
           ativo: ativo,
         },
-        headers: headers,
       })
       .pipe(catchError(handleError));
   }

@@ -1,16 +1,12 @@
 import { Component } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  NonNullableFormBuilder,
-  Validators,
-} from '@angular/forms';
-import { NzUploadFile } from 'ng-zorro-antd/upload';
-import { CatalogoService } from '../services/catalogo.service';
-import { finalize } from 'rxjs';
+import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NzModalRef } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { NzUploadFile } from 'ng-zorro-antd/upload';
+import { finalize } from 'rxjs';
 import { MS1, MS2 } from '../../../contantes/messages';
+import { CatalogoService } from '../services/catalogo.service';
 
 @Component({
   selector: 'app-catalogo-importar-component',
@@ -24,7 +20,8 @@ export class CatalogoImportarComponent {
     private fb: NonNullableFormBuilder,
     private readonly catalogoService: CatalogoService,
     private readonly router: Router,
-    private readonly notification: NzNotificationService
+    private readonly notification: NzNotificationService,
+    private drawerRef: NzModalRef
   ) {}
 
   beforeUpload = (file: NzUploadFile): boolean => {
@@ -57,6 +54,7 @@ export class CatalogoImportarComponent {
           next: (value) => {
             console.log(value);
             this.notification.success('Importador', MS1);
+            this.drawerRef.close();
             this.router.navigateByUrl('catalogo/detalhe/' + value);
           },
         });

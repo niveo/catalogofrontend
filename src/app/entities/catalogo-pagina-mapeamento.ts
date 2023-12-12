@@ -1,5 +1,6 @@
 import { BaseEntity } from './base-entity';
 import { CatalogoPagina } from './catalogo-pagina';
+import { Produto } from './produto';
 
 export class CatalogoPaginaMapeamento extends BaseEntity {
   inicialPosicalX?: number;
@@ -13,6 +14,8 @@ export class CatalogoPaginaMapeamento extends BaseEntity {
   width?: number;
 
   height?: number;
+
+  produtos?: Produto[];
 
   catalogoPagina?: CatalogoPagina;
 }

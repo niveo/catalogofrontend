@@ -16,18 +16,24 @@ export class ProdutoService {
     return this.http.get<Produto[]>(`${this.conf.apiUri}/produto`);
   }
 
-  exportarProdutos(file: any[], comCabecalho: boolean) {
+  getReferencia(referencia: string): Observable<Produto> {
+    return this.http.get<Produto>(
+      `${this.conf.apiUri}/produto/referencia/${referencia}`
+    );
+  }
+
+  exportarProdutos(file: any[], comCabecalho: boolean, separador = ';') {
     const formData = new FormData();
     file.forEach((f) => {
       formData.append('files', f);
     });
 
-    let headers = new HttpHeaders();
-    headers.append('comCabecalho', String(comCabecalho ? 1 : 0));
-
     return this.http
       .post(`${this.conf.apiUri}/produto/importar`, formData, {
-        headers: headers,
+        params: {
+          comCabecalho: comCabecalho,
+          separador: separador,
+        },
       })
       .pipe(catchError(handleError));
   }

@@ -1,6 +1,4 @@
-import {
-  CommonModule
-} from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -25,6 +23,10 @@ import { CatalogoPaginaService } from './services/catalogo-pagina.service';
 import { AngularCropperjsModule } from 'angular-cropperjs';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { CatalogoMapeamentoCordenadasComponent } from './mapeamento/cordenadas/catalogo-mapeamento-cordenadas.component';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { CatalogoPaginaMapeamentoService } from './services/catalogo-pagina-mapeamento.service';
 
 @NgModule({
   imports: [
@@ -42,7 +44,9 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     HttpClientModule,
     NzSpinModule,
     NzGridModule,
+    NzDrawerModule,
     NzToolTipModule,
+    NzListModule,
     FilesizebrPipe,
     AngularCropperjsModule,
     ImagekitioAngularModule.forRoot({
@@ -54,8 +58,9 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     CatalogoComponent,
     CatalogoDetalheComponent,
     CatalogoImportarComponent,
-    CatalogoMapeamentoComponent
+    CatalogoMapeamentoComponent,
+    CatalogoMapeamentoCordenadasComponent,
   ],
-  providers: [CatalogoService, CatalogoPaginaService],
+  providers: [CatalogoService, CatalogoPaginaService, CatalogoPaginaMapeamentoService],
 })
 export class CatalogoModule {}

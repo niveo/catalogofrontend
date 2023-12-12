@@ -29,7 +29,7 @@ export class ProdutoComponent implements OnInit {
   }
 
   navegarImportar() {
-    this.modalService.create({
+    this.modalService.create<ProdutoImportarComponent>({
       nzContent: ProdutoImportarComponent,
       nzFooter: null,
     });
