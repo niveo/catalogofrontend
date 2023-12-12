@@ -13,6 +13,7 @@ import { ProdutoService } from '../services/produto.service';
 export class ProdutoImportarComponent {
   fileList: NzUploadFile[] = [];
   enviandoRegistro = false;
+  comCabecalho = false;
 
   constructor(
     private fb: NonNullableFormBuilder,
@@ -28,7 +29,7 @@ export class ProdutoImportarComponent {
   submitForm() {
     this.enviandoRegistro = true;
     this.produtoService
-      .exportarProdutos(this.fileList)
+      .exportarProdutos(this.fileList, this.comCabecalho)
       .pipe(finalize(() => (this.enviandoRegistro = false)))
       .subscribe({
         error: (err) => {

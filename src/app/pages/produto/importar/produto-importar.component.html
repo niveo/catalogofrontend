@@ -7,11 +7,18 @@
   >
     <button nz-button [disabled]="fileList.length === 1">
       <span nz-icon nzType="upload"></span>
-      Carregar .PDF
+      Carregar .CSV
     </button>
   </nz-upload>
 
-  <div class="fx-row" style="justify-content: end; gap: 10px; align-items: center">
+  <p>Campos: REFERENCIA;DESCRICAO;ATIVO</p>
+
+  <label nz-checkbox [(ngModel)]="comCabecalho">Com cabecalho/header</label>
+
+  <div
+    class="fx-row"
+    style="justify-content: end; gap: 10px; align-items: center"
+  >
     @if(enviandoRegistro){
     <nz-spin nzSimple></nz-spin>
     }
