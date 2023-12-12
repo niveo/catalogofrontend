@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of, switchMap } from 'rxjs';
 import { Catalogo } from '../../entities/catalogo';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { CatalogoImportarComponent } from './importar/catalogo-importar.component';
 
 @Component({
   selector: 'app-catalogo-component',
@@ -14,7 +16,8 @@ export class CatalogoComponent implements OnInit {
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly router: Router
+    private readonly router: Router,
+    private modalService: NzModalService
   ) {}
 
   ngOnInit() {
@@ -26,6 +29,9 @@ export class CatalogoComponent implements OnInit {
   }
 
   navegarImportar() {
-    this.router.navigateByUrl('catalogo/importar');
+    this.modalService.create({
+      nzContent: CatalogoImportarComponent,
+      nzFooter: null,
+    });
   }
 }

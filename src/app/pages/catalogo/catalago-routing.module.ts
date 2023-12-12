@@ -19,9 +19,10 @@ const catalogoDetalhePaginaResolver: ResolveFn<Catalogo> = (
   route: ActivatedRouteSnapshot,
   _state: RouterStateSnapshot
 ) => {
-  return inject(CatalogoPaginaService).getPaginaLazy(Number(route.paramMap.get('id')!));
+  return inject(CatalogoPaginaService).getPaginaLazy(
+    Number(route.paramMap.get('id')!)
+  );
 };
-
 
 const catalogoDetalheResolver: ResolveFn<Catalogo> = (
   route: ActivatedRouteSnapshot,
@@ -47,11 +48,6 @@ const routes: Routes = [
     },
   },
   {
-    path: 'importar',
-    component: CatalogoImportarComponent,
-    canActivate: [AuthGuard],
-  },
-  {
     path: 'detalhe/:id',
     component: CatalogoDetalheComponent,
     canActivate: [AuthGuard],
@@ -63,8 +59,8 @@ const routes: Routes = [
     path: 'mapeamento/:id',
     component: CatalogoMapeamentoComponent,
     canActivate: [AuthGuard],
-    resolve: { 
-      data: catalogoDetalhePaginaResolver
+    resolve: {
+      data: catalogoDetalhePaginaResolver,
     },
   },
 ];

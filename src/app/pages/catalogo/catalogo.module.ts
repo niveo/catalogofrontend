@@ -24,6 +24,7 @@ import { CatalogoService } from './services/catalogo.service';
 import { CatalogoPaginaService } from './services/catalogo-pagina.service';
 import { AngularCropperjsModule } from 'angular-cropperjs';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NzButtonModule,
     NzInputModule,
     NzCheckboxModule,
+    NzModalModule,
     ReactiveFormsModule,
     HttpClientModule,
     NzSpinModule,
