@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, map, shareReplay } from 'rxjs';
-import { Catalogo } from '../../../entities/catalogo';
-import { APP_CONFIG, IConfigToken } from '../../../utils/app-config';
 import { CatalogoPagina } from 'src/app/entities/catalogo-pagina';
+import { APP_CONFIG, IConfigToken } from '../../../utils/app-config';
 
 const CACHE_SIZE = 1;
 
@@ -26,8 +25,8 @@ export class CatalogoPaginaService {
   }
 
   private requestPaginaLazy(id: number) {
-    return this.http
-      .get<CatalogoPagina>(`${this.conf.apiUri}/catalogo_pagina/lazy/${id}`)
-      .pipe(map((response) => response));
+    return this.http.get<CatalogoPagina>(
+      `${this.conf.apiUri}/catalogo_pagina/lazy/${id}`
+    );
   }
 }

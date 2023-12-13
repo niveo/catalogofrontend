@@ -43,11 +43,11 @@ export class MapeamentoProdutosCordenadaComponent implements OnInit {
   }
 
   ngOnInit() {
-    const inicialProdutos$ = this.carregarData();
+    const inicialData$ = this.carregarData();
     const updates$ = merge(this.update$, this.forceReload$).pipe(
       mergeMap(() => this.carregarData())
     );
-    this.produtos$ = merge(inicialProdutos$, updates$);
+    this.produtos$ = merge(inicialData$, updates$);
   }
 
   private carregarData() {

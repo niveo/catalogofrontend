@@ -1,19 +1,43 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Observable, catchError } from 'rxjs';
+import { Observable, Subject, catchError, shareReplay, takeUntil } from 'rxjs';
 import { Catalogo } from '../../../entities/catalogo';
 import { APP_CONFIG, IConfigToken } from '../../../utils/app-config';
 import { handleError } from '../../../utils/handle-error.utils';
 
+const CACHE_SIZE = 1;
+
 @Injectable()
 export class CatalogoService {
+  cacheAll$: Observable<Catalogo[]>;
+  private reloadAll$ = new Subject<void>();
+
   constructor(
     private readonly http: HttpClient,
     @Inject(APP_CONFIG) private readonly conf: IConfigToken
   ) {}
 
   getAll(): Observable<Catalogo[]> {
+    if (!this.cacheAll$) {
+      this.cacheAll$ = this.requestAll().pipe(
+        takeUntil(this.reloadAll$),
+        shareReplay(CACHE_SIZE)
+      );
+    }
+    return this.cacheAll$;
+  }
+
+  private requestAll() {
     return this.http.get<Catalogo[]>(`${this.conf.apiUri}/catalogo`);
+  }
+
+  forceReloadAll() {
+    this.reloadAll$.next();
+    this.cacheAll$ = null;
+  }
+
+  delete(id: number) {
+    return this.http.delete<any>(`${this.conf.apiUri}/catalogo`);
   }
 
   exportarCatalogo(file: any[], descricao: string, ativo: boolean) {

@@ -31,21 +31,11 @@ const catalogoDetalheResolver: ResolveFn<Catalogo> = (
   return inject(CatalogoService).getCatalogo(Number(route.paramMap.get('id')!));
 };
 
-const catalogoResolver: ResolveFn<Catalogo[]> = (
-  _route: ActivatedRouteSnapshot,
-  _state: RouterStateSnapshot
-) => {
-  return inject(CatalogoService).getAll();
-};
-
 const routes: Routes = [
   {
     path: '',
     component: CatalogoComponent,
     canActivate: [AuthGuard],
-    resolve: {
-      data: catalogoResolver,
-    },
   },
   {
     path: 'detalhe/:id',

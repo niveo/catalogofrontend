@@ -6,4 +6,5 @@ export class Produto extends BaseEntity {
   userId?: string;
   identificador?: string;
   ativo: boolean = false;
+  mapeados?: number;
 }

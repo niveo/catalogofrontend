@@ -28,6 +28,7 @@ import { CatalogoMapeamentoCordenadasComponent } from './mapeamento/cordenadas/c
 import { NzListModule } from 'ng-zorro-antd/list';
 import { CatalogoPaginaMapeamentoService } from './services/catalogo-pagina-mapeamento.service';
 import { MapeamentoProdutosCordenadaComponent } from './mapeamento/produtos-cordenadas/mapeamento-produtos-cordenada.component';
+import { BolHumanPipe } from 'src/app/pipes/bolhuman.pipe';
 
 @NgModule({
   imports: [
@@ -49,6 +50,7 @@ import { MapeamentoProdutosCordenadaComponent } from './mapeamento/produtos-cord
     NzToolTipModule,
     NzListModule,
     FilesizebrPipe,
+    BolHumanPipe,
     AngularCropperjsModule,
     ImagekitioAngularModule.forRoot({
       publicKey: environment.imageKitPublicKey,

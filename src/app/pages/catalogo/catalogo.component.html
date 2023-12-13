@@ -4,17 +4,64 @@
       nz-button
       nzType="dashed"
       nzShape="circle"
+      nz-tooltip="Atualizar Lista"
+      (click)="forceReload()"
+    >
+      <fa-icon [icon]="faRefresh"></fa-icon>
+    </button>
+
+    <button
+      nz-button
+      nzType="dashed"
+      nzShape="circle"
       nz-tooltip="Importar Catalogo"
       (click)="navegarImportar()"
     >
       <fa-icon [icon]="faUpload"></fa-icon>
     </button>
   </div>
-  <div>
-    @for(item of catalogos$ | async; track item.id){
-    <div (click)="navegarDetalhe(item.id)">
-      {{ item.descricao }}
+  <div class="fx-flex ovh">
+    <div class="hf ova">
+      <nz-list nzItemLayout="horizontal" [nzLoading]="loading">
+        @for(item of catalogos$ | async; track item.id){
+        <nz-list-item>
+          <nz-list-item-meta [nzDescription]="item.descricao">
+            <nz-list-item-meta-title>
+              <strong>{{ item.descricao }}</strong>
+            </nz-list-item-meta-title>
+            <nz-list-item-meta-title>
+              <span>Ativo: {{ item.ativo | bolhuman }}</span>
+            </nz-list-item-meta-title>
+          </nz-list-item-meta>
+          <ul nz-list-item-actions>
+            <nz-list-item-action>
+              <button
+                nz-button
+                nzType="dashed"
+                nzShape="circle"
+                nz-tooltip="Visualizar"
+                (click)="visualizar(item)"
+              >
+                <fa-icon [icon]="faUpRightFromSquare"></fa-icon>
+              </button>
+            </nz-list-item-action>
+            <nz-list-item-action>
+              <button
+                nz-button
+                nzType="dashed"
+                nzShape="circle"
+                nz-tooltip="Remover"
+                (click)="remover(item)"
+              >
+                <fa-icon [icon]="faTrash"></fa-icon>
+              </button>
+            </nz-list-item-action>
+          </ul>
+        </nz-list-item>
+        } @empty {
+        <nz-list-empty></nz-list-empty>
+        }
+      </nz-list>
     </div>
-    }
   </div>
 </div>

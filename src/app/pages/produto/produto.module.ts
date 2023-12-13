@@ -16,6 +16,10 @@ import { ProdutoImportarComponent } from './importar/produto-importar.component'
 import { ProdutoRoutingModule } from './produto-routing.module';
 import { ProdutoComponent } from './produto.component';
 import { ProdutoService } from './services/produto.service';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { BolHumanPipe } from 'src/app/pipes/bolhuman.pipe';
+
+
 @NgModule({
   imports: [
     CommonModule,
@@ -33,6 +37,8 @@ import { ProdutoService } from './services/produto.service';
     NzGridModule,
     NzToolTipModule,
     NzModalModule,
+    NzListModule,
+    BolHumanPipe
   ],
   declarations: [ProdutoComponent, ProdutoImportarComponent],
   providers: [ProdutoService],

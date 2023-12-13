@@ -4,6 +4,16 @@
       nz-button
       nzType="dashed"
       nzShape="circle"
+      nz-tooltip="Atualizar Lista"
+      (click)="forceReload()"
+    >
+      <fa-icon [icon]="faRefresh"></fa-icon>
+    </button>
+
+    <button
+      nz-button
+      nzType="dashed"
+      nzShape="circle"
       nz-tooltip="Importar Produtos"
       (click)="navegarImportar()"
     >
@@ -12,11 +22,25 @@
   </div>
   <div class="fx-flex ovh">
     <div class="hf ova">
-      @for(item of produtos$ | async; track item.id){
-      <div (click)="navegarDetalhe(item.id)">
-        {{ item.descricao }}
-      </div>
-      }
+      <nz-list nzItemLayout="horizontal" [nzLoading]="loading">
+        @for(item of produtos$ | async; track item.id){
+        <nz-list-item>
+          <nz-list-item-meta [nzDescription]="item.descricao">
+            <nz-list-item-meta-title>
+              <strong>{{ item.referencia }}</strong>
+            </nz-list-item-meta-title>
+            <nz-list-item-meta-title>
+              <span>Ativo: {{ item.ativo | bolhuman }}</span>
+            </nz-list-item-meta-title>
+            <nz-list-item-meta-title>
+              <span>Mapeados: {{ item.mapeados }}</span>
+            </nz-list-item-meta-title>
+          </nz-list-item-meta>
+        </nz-list-item>
+        } @empty {
+        <nz-list-empty></nz-list-empty>
+        }
+      </nz-list>
     </div>
   </div>
 </div>
