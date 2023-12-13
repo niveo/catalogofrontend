@@ -1,4 +1,4 @@
-<div class="fx-row hf ovh">
+<div class="fx-row hf">
   <div class="fx-column gap-5 pd-10 fx-aic">
     <button
       nz-button
@@ -10,11 +10,13 @@
       <fa-icon [icon]="faUpload"></fa-icon>
     </button>
   </div>
-  <div>
-    @for(item of produtos$ | async; track item.id){
-    <div (click)="navegarDetalhe(item.id)">
-      {{ item.descricao }}
+  <div class="fx-flex ovh">
+    <div class="hf ova">
+      @for(item of produtos$ | async; track item.id){
+      <div (click)="navegarDetalhe(item.id)">
+        {{ item.descricao }}
+      </div>
+      }
     </div>
-    }
   </div>
 </div>

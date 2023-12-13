@@ -1,10 +1,17 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import {
   faTrash,
   faUpRightFromSquare,
 } from '@fortawesome/free-solid-svg-icons';
 import { NZ_DRAWER_DATA, NzDrawerRef } from 'ng-zorro-antd/drawer';
-import { Observable, finalize } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  Subject,
+  finalize,
+  merge,
+  mergeMap,
+} from 'rxjs';
 import { CatalogoPaginaMapeamentoService } from '../../services/catalogo-pagina-mapeamento.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Produto } from 'src/app/entities/produto';
@@ -20,23 +27,39 @@ export class MapeamentoProdutosCordenadaComponent implements OnInit {
   loading = false;
   faTrash = faTrash;
   faUpRightFromSquare = faUpRightFromSquare;
+  update$ = new Subject<void>();
+  forceReload$ = new Subject<void>();
 
   constructor(
     private readonly catalogoPaginaMapeamentoService: CatalogoPaginaMapeamentoService,
     private readonly nzDrawerRef: NzDrawerRef,
     private notification: NzNotificationService,
-    @Inject(NZ_DRAWER_DATA) private data: { id: number }
-  ) {}
+    @Inject(NZ_DRAWER_DATA)
+    private data: { id: number }
+  ) {
+    nzDrawerRef.nzBodyStyle = {
+      padding: '0px',
+    };
+  }
 
   ngOnInit() {
-    this.carregarData();
+    const inicialProdutos$ = this.carregarData();
+    const updates$ = merge(this.update$, this.forceReload$).pipe(
+      mergeMap(() => this.carregarData())
+    );
+    this.produtos$ = merge(inicialProdutos$, updates$);
   }
 
   private carregarData() {
     this.loading = true;
-    this.produtos$ = this.catalogoPaginaMapeamentoService
-      .getMapeamentoProdutoCordenadas(this.data.id)
+    return this.catalogoPaginaMapeamentoService
+      .getMapeamentoProdutosCordenadas(this.data.id)
       .pipe(finalize(() => (this.loading = false)));
+  }
+
+  forceReload() {
+    this.catalogoPaginaMapeamentoService.forceReload();
+    this.forceReload$.next();
   }
 
   remover(item: CatalogoPaginaMapeamento, produto: Produto) {
@@ -44,7 +67,7 @@ export class MapeamentoProdutosCordenadaComponent implements OnInit {
       .deleteProdutoCordenada(item.id, produto.id)
       .subscribe({
         next: () => {
-          this.carregarData();
+          this.forceReload();
         },
         error: (err) => {
           console.error(err);

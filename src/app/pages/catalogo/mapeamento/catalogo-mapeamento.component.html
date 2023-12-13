@@ -79,3 +79,13 @@
     ></angular-cropper>
   </div>
 </div>
+<ng-template #refBtnAtualizaCordenadas>
+  <button
+    nz-button
+    nzType="dashed"
+    nzShape="circle"
+    (click)="atualizarCordenadas()"
+  >
+    <fa-icon [icon]="faRefresh"></fa-icon>
+  </button>
+</ng-template>

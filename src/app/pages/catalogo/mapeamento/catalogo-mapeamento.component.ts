@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import {
   faArrowLeft,
   faCancel,
@@ -8,9 +8,13 @@ import {
   faFloppyDisk,
   faHand,
   faList,
+  faRefresh,
 } from '@fortawesome/free-solid-svg-icons';
 import { CropperComponent } from 'angular-cropperjs';
-import { NzDrawerService } from 'ng-zorro-antd/drawer';
+import { NzDrawerRef, NzDrawerService } from 'ng-zorro-antd/drawer';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { BehaviorSubject } from 'rxjs';
+import { MS5 } from 'src/app/contantes/messages';
 import { APP_CONFIG, IConfigToken } from 'src/app/utils/app-config';
 import { CatalogoPaginaMapeamentoService } from '../services/catalogo-pagina-mapeamento.service';
 import { CatalogoPagina } from './../../../entities/catalogo-pagina';
@@ -27,6 +31,7 @@ export class CatalogoMapeamentoComponent implements OnInit {
   faCancel = faCancel;
   faFloppyDisk = faFloppyDisk;
   faList = faList;
+  faRefresh = faRefresh;
 
   configCropper: any = { checkCrossOrigin: false, autoCrop: false };
   identificador: string;
@@ -34,14 +39,20 @@ export class CatalogoMapeamentoComponent implements OnInit {
 
   salvarDireto = false;
 
+  nzDrawerCordenadas: NzDrawerRef<MapeamentoProdutosCordenadaComponent>;
+
   @ViewChild('angularCropper', { static: true })
   public angularCropper: CropperComponent;
+
+  @ViewChild('refBtnAtualizaCordenadas')
+  refBtnAtualizaCordenadas;
 
   constructor(
     private readonly route: ActivatedRoute,
     private location: Location,
     @Inject(APP_CONFIG) public readonly config: IConfigToken,
     private drawerService: NzDrawerService,
+    private notification: NzNotificationService,
     private readonly catalogoPaginaMapeamentoService: CatalogoPaginaMapeamentoService
   ) {}
 
@@ -74,29 +85,35 @@ export class CatalogoMapeamentoComponent implements OnInit {
     this.angularCropper.cropper.reset();
   }
 
+  atualizarCordenadas() {
+    this.nzDrawerCordenadas.getContentComponent()
+    .forceReload();
+  }
+
   visualizarProdutosCordenadas() {
-    this.drawerService
-      .create({
-        nzContent: MapeamentoProdutosCordenadaComponent,
-        nzData: {
-          id: this.catalogoPagina.id,
-        },
-      })
-      .afterClose.subscribe((data) => {
-        if (data) {
-          setTimeout(() => {
-            this.cropperReset();
-            this.angularCropper.cropper.crop();
-            this.angularCropper.cropper.setData({
-              x: data.inicialPosicalX,
-              y: data.inicialPosicalY,
-              width: data.width,
-              height: data.height,
-              rotate: 0,
-            });
+    this.nzDrawerCordenadas = this.drawerService.create({
+      nzContent: MapeamentoProdutosCordenadaComponent,
+      nzData: {
+        id: this.catalogoPagina.id,
+      },
+      nzExtra: this.refBtnAtualizaCordenadas,
+    });
+
+    this.nzDrawerCordenadas.afterClose.subscribe((data) => {
+      if (data) {
+        setTimeout(() => {
+          this.cropperReset();
+          this.angularCropper.cropper.crop();
+          this.angularCropper.cropper.setData({
+            x: data.inicialPosicalX,
+            y: data.inicialPosicalY,
+            width: data.width,
+            height: data.height,
+            rotate: 0,
           });
-        }
-      });
+        });
+      }
+    });
   }
 
   iniciarLancarCordenadas() {
@@ -114,7 +131,7 @@ export class CatalogoMapeamentoComponent implements OnInit {
       .afterClose.subscribe((data: any[]) => {
         if (data) {
           this.catalogoPaginaMapeamentoService
-            .lancarMapeamento({
+            .lancarCordenada({
               catalogoPagina: this.catalogoPagina,
               produtos: data,
               inicialPosicalX: cordenadas.x,
@@ -125,11 +142,9 @@ export class CatalogoMapeamentoComponent implements OnInit {
               height: cordenadas.height,
             })
             .subscribe({
-              next(value) {
-                console.log(value);
-              },
-              error(err) {
+              error: (err) => {
                 console.error(err);
+                this.notification.error('Cordenadas', MS5);
               },
             });
         }

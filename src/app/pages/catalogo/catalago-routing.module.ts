@@ -6,16 +6,16 @@ import {
   RouterStateSnapshot,
   Routes,
 } from '@angular/router';
-import { CatalogoComponent } from './catalogo.component';
 import { AuthGuard } from '@auth0/auth0-angular';
-import { CatalogoImportarComponent } from './importar/catalogo-importar.component';
-import { CatalogoDetalheComponent } from './detalhe/catalogo-detalhe.component';
 import { Catalogo } from 'src/app/entities/catalogo';
-import { CatalogoService } from './services/catalogo.service';
+import { CatalogoPagina } from 'src/app/entities/catalogo-pagina';
+import { CatalogoComponent } from './catalogo.component';
+import { CatalogoDetalheComponent } from './detalhe/catalogo-detalhe.component';
 import { CatalogoMapeamentoComponent } from './mapeamento/catalogo-mapeamento.component';
 import { CatalogoPaginaService } from './services/catalogo-pagina.service';
+import { CatalogoService } from './services/catalogo.service';
 
-const catalogoDetalhePaginaResolver: ResolveFn<Catalogo> = (
+const catalogoDetalhePaginaResolver: ResolveFn<CatalogoPagina> = (
   route: ActivatedRouteSnapshot,
   _state: RouterStateSnapshot
 ) => {
