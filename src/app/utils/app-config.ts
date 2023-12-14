@@ -9,6 +9,7 @@ export interface IConfigToken {
   imageKitAuthenticationEndpoint: string;
 
   imageKitUrlEndPointCatalogo: string;
+  imageKitUrlEndPointCatalogos: string;
 }
 export const APP_CONFIG = new InjectionToken<IConfigToken>(
   'Application config'

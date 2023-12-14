@@ -49,7 +49,12 @@ export class CatalogoService {
       .pipe(finalize(() => this.forceReloadAll()));
   }
 
-  exportarCatalogo(file: any[], descricao: string, ativo: boolean) {
+  exportarCatalogo(
+    file: any[],
+    titulo: string,
+    descricao: string,
+    ativo: boolean
+  ) {
     const formData = new FormData();
     file.forEach((f) => {
       formData.append('files', f);
@@ -58,6 +63,7 @@ export class CatalogoService {
     return this.http
       .post(`${this.conf.apiUri}/catalogo/importar`, formData, {
         params: {
+          titulo: titulo,
           descricao: descricao,
           ativo: ativo,
         },

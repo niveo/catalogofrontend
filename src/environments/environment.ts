@@ -9,7 +9,8 @@ const {
   imageKitPublicKey,
   imageKitUrlEndPoint,
   imageKitAuthenticationEndpoint,
-  imageKitUrlEndPointCatalogo
+  imageKitUrlEndPointCatalogo,
+  imageKitUrlEndPointCatalogos,
 } = config as any;
  
 
@@ -31,5 +32,6 @@ export const environment = {
   imageKitPublicKey: imageKitPublicKey,
   imageKitUrlEndPoint: imageKitUrlEndPoint,
   imageKitUrlEndPointCatalogo: imageKitUrlEndPointCatalogo,
+  imageKitUrlEndPointCatalogos: imageKitUrlEndPointCatalogos,
   imageKitAuthenticationEndpoint: imageKitAuthenticationEndpoint,
 };

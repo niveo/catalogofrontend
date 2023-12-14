@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {
   faRefresh,
@@ -12,6 +12,7 @@ import { MS6 } from 'src/app/contantes/messages';
 import { Catalogo } from '../../entities/catalogo';
 import { CatalogoImportarComponent } from './importar/catalogo-importar.component';
 import { CatalogoService } from './services/catalogo.service';
+import { APP_CONFIG, IConfigToken } from '../../utils/app-config';
 
 @Component({
   selector: 'app-catalogo-component',
@@ -30,7 +31,8 @@ export class CatalogoComponent implements OnInit {
   constructor(
     private readonly router: Router,
     private modalService: NzModalService,
-    private readonly catalogoService: CatalogoService
+    private readonly catalogoService: CatalogoService,
+    @Inject(APP_CONFIG) readonly config: IConfigToken
   ) {}
 
   ngOnInit() {
@@ -64,7 +66,8 @@ export class CatalogoComponent implements OnInit {
       nzOnOk: () => {
         this.catalogoService
           .delete(catalogo.id)
-          .subscribe(() => this.forceReload());
+          .pipe(finalize(() => this.forceReload()))
+          .subscribe();
       },
     });
   }
@@ -73,6 +76,7 @@ export class CatalogoComponent implements OnInit {
     this.modalService.create({
       nzContent: CatalogoImportarComponent,
       nzFooter: null,
+      nzWidth: '50%'
     });
   }
 }

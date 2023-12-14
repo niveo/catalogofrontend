@@ -32,6 +32,7 @@ export class CatalogoImportarComponent {
 
   validateForm: FormGroup = this.fb.group({
     descricao: ['', [Validators.required]],
+    titulo: ['', [Validators.required]],
     ativo: [false],
     arquivo: [null, [Validators.required]],
   });
@@ -42,6 +43,7 @@ export class CatalogoImportarComponent {
       this.catalogoService
         .exportarCatalogo(
           this.fileList,
+          this.validateForm.value.titulo!,
           this.validateForm.value.descricao!,
           this.validateForm.value.ativo!
         )

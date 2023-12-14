@@ -29,6 +29,8 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { CatalogoPaginaMapeamentoService } from './services/catalogo-pagina-mapeamento.service';
 import { MapeamentoProdutosCordenadaComponent } from './mapeamento/produtos-cordenadas/mapeamento-produtos-cordenada.component';
 import { BolHumanPipe } from 'src/app/pipes/bolhuman.pipe';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 
 @NgModule({
   imports: [
@@ -50,6 +52,8 @@ import { BolHumanPipe } from 'src/app/pipes/bolhuman.pipe';
     NzToolTipModule,
     NzListModule,
     FilesizebrPipe,
+    NzCardModule,
+    NzAvatarModule,
     BolHumanPipe,
     AngularCropperjsModule,
     ImagekitioAngularModule.forRoot({

@@ -2,8 +2,10 @@ import { BaseEntity } from './base-entity';
 import { CatalogoPagina } from './catalogo-pagina';
 
 export class Catalogo extends BaseEntity {
-  descricao?: string;
-  userId?: string;
+  titulo?: string; 
+  descricao?: string; 
+  avatar?: string;
+  logo?: string;
   identificador?: string;
   ativo: boolean = false;
   paginas: CatalogoPagina[] = [];

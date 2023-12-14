@@ -2,7 +2,7 @@
   <div class="wf hf ova">
     <div nz-row class="gap-5 pd-5">
       @for(item of catalogo!.paginas; track item.id){
-      <div nz-col  [nzSpan]="12 / 2">
+      <div nz-col [nzSpan]="12 / 2">
         <div
           class="fx-column"
           style="border: 1px solid #2874a6; padding: 5px; cursor: pointer"
@@ -12,7 +12,9 @@
             style="text-align: center"
             [path]="item.name"
             [urlEndpoint]="
-              config.imageKitUrlEndPointCatalogo + catalogo.identificador + '/'
+              config.imageKitUrlEndPointCatalogos +
+              catalogo.identificador +
+              '/paginas/'
             "
             [transformation]="[
               {

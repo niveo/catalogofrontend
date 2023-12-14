@@ -21,44 +21,58 @@
     </button>
   </div>
   <div class="fx-flex ovh">
-    <div class="hf ova">
-      <nz-list nzItemLayout="horizontal" [nzLoading]="loading">
+    <div class="hf ova pd-10">
+      <div nz-row [nzGutter]="[20, 20]">
         @for(item of catalogos$ | async; track item.id){
-        <nz-list-item>
-          <nz-list-item-meta [nzDescription]="item.descricao">
-            <nz-list-item-meta-title>
-              <span>Ativo: {{ item.ativo | bolhuman }}</span>
-            </nz-list-item-meta-title>
-          </nz-list-item-meta>
-          <ul nz-list-item-actions>
-            <nz-list-item-action>
-              <button
-                nz-button
-                nzType="dashed"
-                nzShape="circle"
-                nz-tooltip="Visualizar"
-                (click)="visualizar(item)"
-              >
-                <fa-icon [icon]="faUpRightFromSquare"></fa-icon>
-              </button>
-            </nz-list-item-action>
-            <nz-list-item-action>
-              <button
-                nz-button
-                nzType="dashed"
-                nzShape="circle"
-                nz-tooltip="Remover"
-                (click)="remover(item)"
-              >
-                <fa-icon [icon]="faTrash"></fa-icon>
-              </button>
-            </nz-list-item-action>
-          </ul>
-        </nz-list-item>
+
+        <div nz-col [nzSpan]="24 / 2">
+          <nz-card
+            [nzCover]="coverTemplate"
+            [nzActions]="[actinoVisualizar, actionRemover]"
+          >
+            <nz-card-meta
+              [nzTitle]="item.titulo"
+              [nzDescription]="item.descricao"
+              [nzAvatar]="avatarTemplate"
+            ></nz-card-meta>
+          </nz-card>
+          <ng-template #avatarTemplate>
+            <nz-avatar
+              [nzSrc]="
+                config.imageKitUrlEndPointCatalogos +
+                item.identificador +
+                '/' +
+                item.avatar
+              "
+            ></nz-avatar>
+          </ng-template>
+          <ng-template #coverTemplate>
+            <img
+              [src]="
+                config.imageKitUrlEndPointCatalogos +
+                  item.identificador +
+                  '/' +
+                  item.logo ||
+                config.imageKitUrlEndPointCatalogo +
+                  'Image_not_available.png?updatedAt=1702565682239'
+              "
+            />
+          </ng-template>
+          <ng-template #actinoVisualizar>
+            <div (click)="visualizar(item)">
+              <fa-icon [icon]="faUpRightFromSquare"></fa-icon>
+            </div>
+          </ng-template>
+          <ng-template #actionRemover>
+            <div (click)="remover(item)">
+              <fa-icon [icon]="faTrash" style="color: red"></fa-icon>
+            </div>
+          </ng-template>
+        </div>
         } @empty {
         <nz-list-empty></nz-list-empty>
         }
-      </nz-list>
+      </div>
     </div>
   </div>
 </div>
