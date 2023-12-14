@@ -21,23 +21,37 @@
     </button>
   </div>
   <div class="fx-flex ovh">
-    <div class="hf ova">
-      <nz-list nzItemLayout="horizontal" [nzLoading]="loading">
+    <div class="hf ova pd-10">
+      @if(loading){
+      <nz-spin
+        nzSimple
+        [nzSize]="'large'"
+        style="text-align: center; padding-top: 20px"
+      ></nz-spin>
+      }
+      <div nz-row [nzGutter]="[20, 20]">
         @for(item of produtos$ | async; track item.id){
-        <nz-list-item>
-          <nz-list-item-meta [nzDescription]="item.descricao">
-            <nz-list-item-meta-title>
-              <strong>{{ item.referencia }}</strong>
-            </nz-list-item-meta-title>
-            <nz-list-item-meta-title>
-              <span>Mapeados: {{ item.mapeados }}</span>
-            </nz-list-item-meta-title>
-          </nz-list-item-meta>
-        </nz-list-item>
-        } @empty {
-        <nz-list-empty></nz-list-empty>
+
+        <div nz-col [nzSpan]="24 / 2">
+          <nz-card [nzActions]="[actinoEditar, actionRemover]">
+            <nz-card-meta
+              [nzTitle]="item.referencia"
+              [nzDescription]="item.descricao"
+            ></nz-card-meta>
+          </nz-card>
+          <ng-template #actinoEditar>
+            <div (click)="editar(item)" nz-tooltip="Editar">
+              <fa-icon [icon]="faEdit"></fa-icon>
+            </div>
+          </ng-template>
+          <ng-template #actionRemover>
+            <div (click)="remover(item)" nz-tooltip="Remover">
+              <fa-icon [icon]="faTrash" style="color: red"></fa-icon>
+            </div>
+          </ng-template>
+        </div>
         }
-      </nz-list>
+      </div>
     </div>
   </div>
 </div>

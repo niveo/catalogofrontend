@@ -35,7 +35,7 @@
         <div nz-col [nzSpan]="24 / 2">
           <nz-card
             [nzCover]="coverTemplate"
-            [nzActions]="[actinoVisualizar, actionRemover]"
+            [nzActions]="[actinoVisualizar, actinoEditar, actionRemover]"
           >
             <nz-card-meta
               [nzTitle]="item.titulo"
@@ -66,12 +66,17 @@
             />
           </ng-template>
           <ng-template #actinoVisualizar>
-            <div (click)="visualizar(item)">
+            <div (click)="visualizar(item)" nz-tooltip="Visualizar">
               <fa-icon [icon]="faUpRightFromSquare"></fa-icon>
             </div>
           </ng-template>
+          <ng-template #actinoEditar>
+            <div (click)="editar(item)" nz-tooltip="Editar">
+              <fa-icon [icon]="faEdit"></fa-icon>
+            </div>
+          </ng-template>
           <ng-template #actionRemover>
-            <div (click)="remover(item)">
+            <div (click)="remover(item)" nz-tooltip="Remover">
               <fa-icon [icon]="faTrash" style="color: red"></fa-icon>
             </div>
           </ng-template>
