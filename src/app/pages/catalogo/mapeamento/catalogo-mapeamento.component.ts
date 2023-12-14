@@ -59,10 +59,7 @@ export class CatalogoMapeamentoComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.identificador = params.get('identificador');
-
-      this.route.data.subscribe(({ data }) => {
-        this.catalogoPagina = data;
-      });
+      this.route.data.subscribe(({ data }) => (this.catalogoPagina = data));
     });
 
     this.angularCropper.image.nativeElement.addEventListener('cropend', () => {
@@ -86,8 +83,7 @@ export class CatalogoMapeamentoComponent implements OnInit {
   }
 
   atualizarCordenadas() {
-    this.nzDrawerCordenadas.getContentComponent()
-    .forceReload();
+    this.nzDrawerCordenadas.getContentComponent().forceReload();
   }
 
   visualizarProdutosCordenadas() {

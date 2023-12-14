@@ -1,6 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Observable, Subject, catchError, shareReplay, takeUntil } from 'rxjs';
+import {
+  Observable,
+  Subject,
+  catchError,
+  finalize,
+  shareReplay,
+  takeUntil,
+} from 'rxjs';
 import { Catalogo } from '../../../entities/catalogo';
 import { APP_CONFIG, IConfigToken } from '../../../utils/app-config';
 import { handleError } from '../../../utils/handle-error.utils';
@@ -37,7 +44,9 @@ export class CatalogoService {
   }
 
   delete(id: number) {
-    return this.http.delete<any>(`${this.conf.apiUri}/catalogo`);
+    return this.http
+      .delete<any>(`${this.conf.apiUri}/catalogo/${id}`)
+      .pipe(finalize(() => this.forceReloadAll()));
   }
 
   exportarCatalogo(file: any[], descricao: string, ativo: boolean) {
@@ -53,6 +62,7 @@ export class CatalogoService {
           ativo: ativo,
         },
       })
+      .pipe(finalize(() => this.forceReloadAll()))
       .pipe(catchError(handleError));
   }
 
