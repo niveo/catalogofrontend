@@ -46,6 +46,8 @@ export class CatalogoMapeamentoComponent implements OnInit {
   @ViewChild('refBtnAtualizaCordenadas')
   refBtnAtualizaCordenadas;
 
+  situacaoCropper: 'move' | 'crop' | 'reset' = 'move';
+
   constructor(
     private readonly route: ActivatedRoute,
     private location: Location,
@@ -62,23 +64,27 @@ export class CatalogoMapeamentoComponent implements OnInit {
     });
 
     this.angularCropper.image.nativeElement.addEventListener('cropend', () => {
-      if (this.salvarDireto) {
+      if (this.salvarDireto && this.situacaoCropper === 'crop') {
         this.iniciarLancarCordenadas();
       }
     });
+    this.setDragModeMove();
   }
 
   setDragModeMove() {
     this.angularCropper.cropper.setDragMode('move');
+    this.situacaoCropper = 'move';
   }
 
   setDragModeCrop() {
     this.angularCropper.cropper.setDragMode('crop');
+    this.situacaoCropper = 'crop';
   }
 
   cropperReset() {
     this.angularCropper.cropper.clear();
     this.angularCropper.cropper.reset();
+    this.situacaoCropper = 'reset';
   }
 
   atualizarCordenadas() {
