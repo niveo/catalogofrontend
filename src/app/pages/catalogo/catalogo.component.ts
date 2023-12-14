@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import {
   faRefresh,
   faTrash,
@@ -10,9 +10,8 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { Observable, Subject, finalize, merge, mergeMap } from 'rxjs';
 import { MS6 } from 'src/app/contantes/messages';
 import { Catalogo } from '../../entities/catalogo';
-import { CatalogoImportarComponent } from './importar/catalogo-importar.component';
-import { CatalogoService } from './services/catalogo.service';
 import { APP_CONFIG, IConfigToken } from '../../utils/app-config';
+import { CatalogoService } from './services/catalogo.service';
 
 @Component({
   selector: 'app-catalogo-component',
@@ -73,10 +72,6 @@ export class CatalogoComponent implements OnInit {
   }
 
   navegarImportar() {
-    this.modalService.create({
-      nzContent: CatalogoImportarComponent,
-      nzFooter: null,
-      nzWidth: '50%'
-    });
+    this.router.navigateByUrl('catalogo/importar');
   }
 }

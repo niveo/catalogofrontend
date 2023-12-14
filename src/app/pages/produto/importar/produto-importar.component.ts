@@ -36,11 +36,10 @@ export class ProdutoImportarComponent {
       .pipe(finalize(() => (this.enviandoRegistro = false)))
       .subscribe({
         error: (err) => {
-          console.log(err);
+          console.error(err);
           this.notification.error('Importador', MS2);
         },
-        next: (value) => {
-          console.log(value);
+        next: ( ) => {
           this.notification.success('Importador', MS1);
           this.drawerRef.close();
         },

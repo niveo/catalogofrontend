@@ -51,6 +51,8 @@ export class CatalogoService {
 
   exportarCatalogo(
     file: any[],
+    fileLogo: any[],
+    fileAvatar: any[],
     titulo: string,
     descricao: string,
     ativo: boolean
@@ -59,6 +61,8 @@ export class CatalogoService {
     file.forEach((f) => {
       formData.append('files', f);
     });
+    formData.append('logo', fileLogo[0]);
+    formData.append('avatar', fileAvatar[0]);
 
     return this.http
       .post(`${this.conf.apiUri}/catalogo/importar`, formData, {

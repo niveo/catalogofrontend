@@ -14,6 +14,7 @@ import { CatalogoDetalheComponent } from './detalhe/catalogo-detalhe.component';
 import { CatalogoMapeamentoComponent } from './mapeamento/catalogo-mapeamento.component';
 import { CatalogoPaginaService } from './services/catalogo-pagina.service';
 import { CatalogoService } from './services/catalogo.service';
+import { CatalogoImportarComponent } from './importar/catalogo-importar.component';
 
 const catalogoDetalhePaginaResolver: ResolveFn<CatalogoPagina> = (
   route: ActivatedRouteSnapshot,
@@ -52,6 +53,11 @@ const routes: Routes = [
     resolve: {
       data: catalogoDetalhePaginaResolver,
     },
+  },
+  {
+    path: 'importar',
+    component: CatalogoImportarComponent,
+    canActivate: [AuthGuard],
   },
 ];
 

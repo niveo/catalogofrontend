@@ -22,6 +22,13 @@
   </div>
   <div class="fx-flex ovh">
     <div class="hf ova pd-10">
+      @if(loading){
+      <nz-spin
+        nzSimple
+        [nzSize]="'large'"
+        style="text-align: center; padding-top: 20px"
+      ></nz-spin>
+      }
       <div nz-row [nzGutter]="[20, 20]">
         @for(item of catalogos$ | async; track item.id){
 
@@ -69,8 +76,6 @@
             </div>
           </ng-template>
         </div>
-        } @empty {
-        <nz-list-empty></nz-list-empty>
         }
       </div>
     </div>

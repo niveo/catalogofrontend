@@ -13,7 +13,6 @@ import {
 import { CropperComponent } from 'angular-cropperjs';
 import { NzDrawerRef, NzDrawerService } from 'ng-zorro-antd/drawer';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { BehaviorSubject } from 'rxjs';
 import { MS5 } from 'src/app/contantes/messages';
 import { APP_CONFIG, IConfigToken } from 'src/app/utils/app-config';
 import { CatalogoPaginaMapeamentoService } from '../services/catalogo-pagina-mapeamento.service';

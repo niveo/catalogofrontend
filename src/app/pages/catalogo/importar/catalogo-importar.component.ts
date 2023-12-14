@@ -7,6 +7,7 @@ import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { finalize } from 'rxjs';
 import { MS1, MS2 } from '../../../contantes/messages';
 import { CatalogoService } from '../services/catalogo.service';
+import { faUpload } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-catalogo-importar-component',
@@ -14,19 +15,33 @@ import { CatalogoService } from '../services/catalogo.service';
 })
 export class CatalogoImportarComponent {
   fileList: NzUploadFile[] = [];
+  fileListLogo: NzUploadFile[] = [];
+  fileListAvatar: NzUploadFile[] = [];
+  faUpload = faUpload;
   enviandoCatalogo = false;
+
+  tipoImagens = ['.png', '.jpg', '.jpeg'];
 
   constructor(
     private fb: NonNullableFormBuilder,
     private readonly catalogoService: CatalogoService,
     private readonly router: Router,
-    private readonly notification: NzNotificationService,
-    private drawerRef: NzModalRef
+    private readonly notification: NzNotificationService
   ) {}
 
-  beforeUpload = (file: NzUploadFile): boolean => {
+  beforeUploadPaginas = (file: NzUploadFile): boolean => {
     this.fileList = this.fileList.concat(file);
     this.validateForm.patchValue({ arquivo: this.fileList });
+    return false;
+  };
+
+  beforeUploadLogo = (file: NzUploadFile): boolean => {
+    this.fileListLogo = this.fileListLogo.concat(file);
+    return false;
+  };
+
+  beforeUploadAvatar = (file: NzUploadFile): boolean => {
+    this.fileListAvatar = this.fileListAvatar.concat(file);
     return false;
   };
 
@@ -43,6 +58,8 @@ export class CatalogoImportarComponent {
       this.catalogoService
         .exportarCatalogo(
           this.fileList,
+          this.fileListLogo,
+          this.fileListAvatar,
           this.validateForm.value.titulo!,
           this.validateForm.value.descricao!,
           this.validateForm.value.ativo!
@@ -50,13 +67,11 @@ export class CatalogoImportarComponent {
         .pipe(finalize(() => (this.enviandoCatalogo = false)))
         .subscribe({
           error: (err) => {
-            console.log(err);
+            console.error(err);
             this.notification.error('Importador', MS2);
           },
           next: (value) => {
-            console.log(value);
             this.notification.success('Importador', MS1);
-            this.drawerRef.close();
             this.router.navigateByUrl('catalogo/detalhe/' + value);
           },
         });
