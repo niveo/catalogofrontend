@@ -24,7 +24,6 @@ import { FooterComponent } from './componentes/footer/footer.component';
 import { HomeLogoButtonComponenet } from './componentes/home-logo-button/home-logo.button.component';
 import { LoadingComponent } from './componentes/loading.component';
 import { NavBarComponent } from './componentes/nav-bar/nav-bar.component';
-import { HttpsRequestInterceptor } from './interceptors/requests.interceptor';
 import { CatalogoModule } from './pages/catalogo/catalogo.module';
 import { ErrorComponent } from './pages/error/error.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -94,11 +93,6 @@ registerLocaleData(pt);
           json: () => import('highlight.js/lib/languages/json'),
         },
       },
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpsRequestInterceptor,
-      multi: true,
     },
   ],
   bootstrap: [AppComponent],
