@@ -15,8 +15,10 @@ export class HttpsRequestInterceptor implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    let url = req.url;
+
     const dupReq = req.clone({
-      url: this.conf.apiUri,
+      url: this.conf.apiUri + url,
     });
 
     dupReq.headers.set(
