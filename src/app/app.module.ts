@@ -1,4 +1,4 @@
-import { environment } from './../environments/environment.development';
+import { environment } from './../environments/environment';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
