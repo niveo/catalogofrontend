@@ -1,37 +1,23 @@
-import config from '../../auth_config-prod.json';
-
-const {
-  domain,
-  clientId,
-  authorizationParams: { audience },
-  apiUri,
-  errorPath,
-  imageKitPublicKey,
-  imageKitUrlEndPoint,
-  imageKitAuthenticationEndpoint,
-  imageKitUrlEndPointCatalogo,
-  imageKitUrlEndPointCatalogos,
-} = config as any;
- 
-
 export const environment = {
   production: true,
   auth: {
-    domain,
-    clientId,
+    domain: process.env['AUTH_DOMAIN'],
+    clientId: process.env['AUTH_CLIEND_ID'],
     authorizationParams: {
-      ...(audience && audience !== 'YOUR_API_IDENTIFIER' ? { audience } : null),
+      audience: process.env['AUTH_AUDIENCE'],
       redirect_uri: window.location.origin,
     },
-    errorPath,
+    errorPath: process.env['AUTH_ERROR_PATH'],
   },
-  apiUri: apiUri,
+  apiUri: process.env['API_URI'],
   httpInterceptor: {
-    allowedList: [`${apiUri}/*`],
+    allowedList: [`${process.env['API_URI']}/*`],
   },
-  imageKitPublicKey: imageKitPublicKey,
-  imageKitUrlEndPoint: imageKitUrlEndPoint,
-  imageKitUrlEndPointCatalogo: imageKitUrlEndPointCatalogo,
-  imageKitUrlEndPointCatalogos: imageKitUrlEndPointCatalogos,
-  imageKitAuthenticationEndpoint: imageKitAuthenticationEndpoint,
+  imageKitPublicKey: process.env['IMAGEKIT_PUBLIC_KEY'],
+  imageKitUrlEndPoint: process.env['IMAGEKIT_URLENDPOINT'],
+  imageKitUrlEndPointCatalogo:
+    process.env['IMAGEKIT_URLENDPOINT'] + '/catalogo/',
+  imageKitUrlEndPointCatalogos:
+    process.env['IMAGEKIT_URLENDPOINT'] + '/catalogo/catalogos/',
+  //imageKitAuthenticationEndpoint: imageKitAuthenticationEndpoint,
 };
