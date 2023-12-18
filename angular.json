@@ -15,7 +15,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
             "outputPath": "dist/catalogofrontend",
             "index": "src/index.html",
@@ -62,7 +62,13 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -102,6 +108,72 @@
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        }
+      }
+    },
+    "libs": {
+      "projectType": "library",
+      "root": "projects/libs",
+      "sourceRoot": "projects/libs/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/libs/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/libs/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/libs/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/libs/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "imagekit-angular": {
+      "projectType": "library",
+      "root": "projects/imagekit-angular",
+      "sourceRoot": "projects/imagekit-angular/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/imagekit-angular/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/imagekit-angular/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/imagekit-angular/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/imagekit-angular/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
           }
         }
       }

@@ -1,0 +1,8 @@
+<div class="fx-row" style="align-items: center;">
+  <div class="fx-flex"></div>
+  @if(auth.isAuthenticated$ | async){
+  <app-nav-bar-profile-component />
+  } @else {
+  <button nz-button nzType="link" (click)="logIn()">Login</button>
+  }
+</div>

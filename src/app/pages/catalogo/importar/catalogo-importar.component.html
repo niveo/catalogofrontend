@@ -1,0 +1,77 @@
+<div class="fx-row gap-5" style="padding: 20px">
+  <div class="fx-column fx-flex gap-5">
+    <form nz-form [formGroup]="validateForm" nzLayout="vertical">
+      <nz-form-item>
+        <nz-form-label nzFor="titulo">Titulo</nz-form-label>
+        <nz-form-control nzErrorTip="Informe uma titulo!">
+          <input nz-input formControlName="titulo" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzFor="descricao">Descrição</nz-form-label>
+        <nz-form-control nzErrorTip="Informe uma drescrição!">
+          <input nz-input formControlName="descricao" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <div nz-row>
+        <div nz-col>
+          <label nz-checkbox formControlName="ativo">
+            <span>Ativo</span>
+          </label>
+        </div>
+      </div>
+    </form>
+
+    <nz-upload
+      [(nzFileList)]="fileListLogo"
+      [nzBeforeUpload]="beforeUploadLogo"
+      [nzAccept]="tipoImagens"
+      [nzMultiple]="true"
+    >
+      <button nz-button [disabled]="fileListLogo.length === 1">
+        <fa-icon [icon]="faUpload"></fa-icon>
+        &nbsp; Carregar Logo
+      </button>
+    </nz-upload>
+
+    <nz-upload
+      [(nzFileList)]="fileListAvatar"
+      [nzBeforeUpload]="beforeUploadAvatar"
+      [nzAccept]="tipoImagens"
+      [nzMultiple]="true"
+    >
+      <button nz-button [disabled]="fileListAvatar.length === 1">
+        <fa-icon [icon]="faUpload"></fa-icon>
+        &nbsp; Carregar Avatar
+      </button>
+    </nz-upload>
+
+    <div
+      class="fx-row"
+      style="justify-content: end; gap: 10px; align-items: center"
+    >
+      @if(enviandoCatalogo){
+      <nz-spin nzSimple></nz-spin>
+      }
+      <button nz-button [nzType]="'primary'" (click)="submitForm()">
+        Importar Catalogo
+      </button>
+    </div>
+  </div>
+
+  <div class="fx-flex">
+    <nz-upload
+      [(nzFileList)]="fileList"
+      [nzBeforeUpload]="beforeUploadPaginas"
+      [nzAccept]="tipoImagens"
+      [nzMultiple]="true"
+    >
+      <button nz-button>
+        <fa-icon [icon]="faUpload"></fa-icon>
+        &nbsp; Carregar Imagens
+      </button>
+    </nz-upload>
+  </div>
+</div>

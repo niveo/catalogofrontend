@@ -1,4 +1,25 @@
-<!-- NG-ZORRO -->
-<a href="https://github.com/NG-ZORRO/ng-zorro-antd" target="_blank" style="display: flex;align-items: center;justify-content: center;height: 100%;width: 100%;">
-  <img height="300" src="https://img.alicdn.com/tfs/TB1X.qJJgHqK1RjSZFgXXa7JXXa-89-131.svg">
-</a>
+<div class="fx-row hf wf">
+  <div class="fx-column hf fx-aic pdb-10">
+    <div class="fx-flex fx-column wf">
+      <ul nz-menu nzMode="inline">
+        @for(item of menus; track item.link){
+        <li
+          nz-menu-item
+          [routerLink]="item.link"
+          nz-tooltip
+          [nzTooltipTitle]="item.descricao"
+          nzTooltipPlacement="rightTop"
+        >
+          <fa-icon [icon]="item.icon"></fa-icon>
+        </li>
+        }
+      </ul>
+    </div>
+    <app-nav-bar-component />
+  </div>
+  <div class="fx-flex fx-column ovh">
+    <div class="fx-flex ovh">
+      <router-outlet></router-outlet>
+    </div> 
+  </div>
+</div>

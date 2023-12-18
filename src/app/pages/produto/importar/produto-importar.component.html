@@ -1,0 +1,31 @@
+<div class="fx-column gap-5">
+  <nz-upload
+    [(nzFileList)]="fileList"
+    [nzBeforeUpload]="beforeUpload"
+    [nzAccept]="['.csv']"
+    [nzMultiple]="false"
+  >
+    <button nz-button [disabled]="fileList.length === 1">
+      <span nz-icon nzType="upload"></span>
+      Carregar .CSV
+    </button>
+  </nz-upload>
+
+  <p>Campos: REFERENCIA;DESCRICAO;ATIVO</p>
+
+  <label nz-checkbox [(ngModel)]="comCabecalho">Com cabecalho/header</label>
+
+  <label>Separador</label>
+  <input nz-input placeholder="Separador" [(ngModel)]="separador" />
+  <div
+    class="fx-row"
+    style="justify-content: end; gap: 10px; align-items: center"
+  >
+    @if(enviandoRegistro){
+    <nz-spin nzSimple></nz-spin>
+    }
+    <button nz-button [nzType]="'primary'" (click)="submitForm()">
+      Enviar Arquivo
+    </button>
+  </div>
+</div>

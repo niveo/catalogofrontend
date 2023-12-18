@@ -1,0 +1,91 @@
+<div class="fx-row hf ovh">
+  <div class="fx-column gap-5 pd-10 fx-aic">
+    <button
+      nz-button
+      nzType="dashed"
+      nzShape="circle"
+      (click)="back()"
+      nz-tooltip="Voltar"
+    >
+      <fa-icon [icon]="faBackward"></fa-icon>
+    </button>
+
+    <button
+      nz-button
+      nzType="dashed"
+      nzShape="circle"
+      (click)="setDragModeMove()"
+      nz-tooltip="Movimentar"
+    >
+      <fa-icon [icon]="faHand"></fa-icon>
+    </button>
+
+    <button
+      nz-button
+      nzType="dashed"
+      nzShape="circle"
+      (click)="setDragModeCrop()"
+      nz-tooltip="Cortar"
+    >
+      <fa-icon [icon]="faCrop"></fa-icon>
+    </button>
+
+    <button
+      nz-button
+      nzType="dashed"
+      nzShape="circle"
+      (click)="cropperReset()"
+      nz-tooltip="Resetar"
+    >
+      <fa-icon [icon]="faCancel"></fa-icon>
+    </button>
+
+    <button
+      nz-button
+      nzType="dashed"
+      nzShape="circle"
+      (click)="iniciarLancarCordenadas()"
+      nz-tooltip="Lançar Cordenadas"
+    >
+      <fa-icon [icon]="faFloppyDisk"></fa-icon>
+    </button>
+    <label
+      nz-checkbox
+      [(ngModel)]="salvarDireto"
+      nz-tooltip="Lançar após o corte"
+    ></label>
+
+    <button
+      nz-button
+      nzType="dashed"
+      nzShape="circle"
+      (click)="visualizarProdutosCordenadas()"
+      nz-tooltip="Produtos Cordenadas"
+    >
+      <fa-icon [icon]="faList"></fa-icon>
+    </button>
+  </div>
+
+  <div class="fx-flex hf ova">
+    <angular-cropper
+      #angularCropper
+      [cropperOptions]="configCropper"
+      [imageUrl]="
+        config.imageKitUrlEndPointCatalogos +
+        identificador +
+        '/paginas/' +
+        catalogoPagina.name
+      "
+    ></angular-cropper>
+  </div>
+</div>
+<ng-template #refBtnAtualizaCordenadas>
+  <button
+    nz-button
+    nzType="dashed"
+    nzShape="circle"
+    (click)="atualizarCordenadas()"
+  >
+    <fa-icon [icon]="faRefresh"></fa-icon>
+  </button>
+</ng-template>
