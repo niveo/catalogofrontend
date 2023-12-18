@@ -20,7 +20,7 @@ const setEnv = () => {
     },
     apiUri: '${process.env['API_URI']}',
     httpInterceptor: { 
-      allowedList: ['${process['API_URI']}/*']
+      allowedList: ['${process.env['API_URI']}/*']
     },
     imageKitPublicKey: '${process.env['IMAGEKIT_PUBLIC_KEY']}',
     imageKitUrlEndPoint: '${process.env['IMAGEKIT_URLENDPOINT']}',
