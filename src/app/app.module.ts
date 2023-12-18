@@ -1,3 +1,4 @@
+import { environment } from './../environments/environment.development';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
@@ -19,7 +20,6 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
-import { environment } from '../environments/environment.development';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { HomeLogoButtonComponenet } from './componentes/home-logo-button/home-logo.button.component';
 import { LoadingComponent } from './componentes/loading.component';
