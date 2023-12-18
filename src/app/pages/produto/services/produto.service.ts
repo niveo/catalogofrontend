@@ -12,10 +12,7 @@ export class ProdutoService {
   cacheAll$: Observable<Produto[]>;
   private reloadAll$ = new Subject<void>();
 
-  constructor(
-    private readonly http: HttpClient,
-    @Inject(APP_CONFIG) private readonly conf: IConfigToken
-  ) {}
+  constructor(private readonly http: HttpClient) {}
 
   getAll(): Observable<Produto[]> {
     if (!this.cacheAll$) {
@@ -33,12 +30,12 @@ export class ProdutoService {
   }
 
   private requestAll() {
-    return this.http.get<Produto[]>(`${this.conf.apiUri}/produto`);
+    return this.http.get<Produto[]>(`/produto`);
   }
 
   getReferencia(referencia: string): Observable<Produto> {
     return this.http.get<Produto>(
-      `${this.conf.apiUri}/produto/referencia/${referencia}`
+      `/produto/referencia/${referencia}`
     );
   }
 
@@ -49,7 +46,7 @@ export class ProdutoService {
     });
 
     return this.http
-      .post(`${this.conf.apiUri}/produto/importar`, formData, {
+      .post(`/produto/importar`, formData, {
         params: {
           comCabecalho: comCabecalho,
           separador: separador,

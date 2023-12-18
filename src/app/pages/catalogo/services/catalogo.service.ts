@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   Observable,
   Subject,
@@ -9,7 +9,6 @@ import {
   takeUntil,
 } from 'rxjs';
 import { Catalogo } from '../../../entities/catalogo';
-import { APP_CONFIG, IConfigToken } from '../../../utils/app-config';
 import { handleError } from '../../../utils/handle-error.utils';
 
 const CACHE_SIZE = 1;
@@ -19,10 +18,7 @@ export class CatalogoService {
   cacheAll$: Observable<Catalogo[]>;
   private reloadAll$ = new Subject<void>();
 
-  constructor(
-    private readonly http: HttpClient,
-    @Inject(APP_CONFIG) private readonly conf: IConfigToken
-  ) {}
+  constructor(private readonly http: HttpClient) {}
 
   getAll(): Observable<Catalogo[]> {
     if (!this.cacheAll$) {
@@ -35,7 +31,7 @@ export class CatalogoService {
   }
 
   private requestAll() {
-    return this.http.get<Catalogo[]>(`${this.conf.apiUri}/catalogo`);
+    return this.http.get<Catalogo[]>('/catalogo');
   }
 
   forceReloadAll() {
@@ -45,7 +41,7 @@ export class CatalogoService {
 
   delete(id: number) {
     return this.http
-      .delete<any>(`${this.conf.apiUri}/catalogo/${id}`)
+      .delete<any>(`/catalogo/${id}`)
       .pipe(finalize(() => this.forceReloadAll()));
   }
 
@@ -65,7 +61,7 @@ export class CatalogoService {
     formData.append('avatar', fileAvatar[0]);
 
     return this.http
-      .post(`${this.conf.apiUri}/catalogo/importar`, formData, {
+      .post(`/catalogo/importar`, formData, {
         params: {
           titulo: titulo,
           descricao: descricao,
@@ -77,6 +73,6 @@ export class CatalogoService {
   }
 
   getCatalogo(id: number): Observable<Catalogo> {
-    return this.http.get<Catalogo>(`${this.conf.apiUri}/catalogo/lazy/${id}`);
+    return this.http.get<Catalogo>(`/catalogo/lazy/${id}`);
   }
 }
