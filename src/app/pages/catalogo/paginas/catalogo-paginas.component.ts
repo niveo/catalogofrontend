@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Catalogo } from 'src/app/entities/catalogo';
-import { APP_CONFIG, IConfigToken } from 'src/app/utils/app-config';
+import { Catalogo } from '../../../entities/catalogo';
+import { APP_CONFIG, IConfigToken } from '../../../utils/app-config';
 
 @Component({
   selector: 'app-catalogo-paginas-component',

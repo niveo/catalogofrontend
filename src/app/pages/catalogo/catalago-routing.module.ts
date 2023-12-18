@@ -7,8 +7,8 @@ import {
   Routes,
 } from '@angular/router';
 import { AuthGuard } from '@auth0/auth0-angular';
-import { Catalogo } from 'src/app/entities/catalogo';
-import { CatalogoPagina } from 'src/app/entities/catalogo-pagina';
+import { Catalogo } from '../../entities/catalogo';
+import { CatalogoPagina } from '../../entities/catalogo-pagina';
 import { CatalogoComponent } from './catalogo.component'; 
 import { CatalogoMapeamentoComponent } from './mapeamento/catalogo-mapeamento.component';
 import { CatalogoPaginaService } from './services/catalogo-pagina.service';

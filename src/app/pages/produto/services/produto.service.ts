@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, Subject, catchError, shareReplay, takeUntil } from 'rxjs';
-import { Produto } from 'src/app/entities/produto';
+import { Produto } from '../../../entities/produto';
 import { APP_CONFIG, IConfigToken } from '../../../utils/app-config';
 import { handleError } from '../../../utils/handle-error.utils';
 

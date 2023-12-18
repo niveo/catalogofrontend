@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, Subject, shareReplay, takeUntil, tap } from 'rxjs';
-import { CatalogoPaginaMapeamento } from 'src/app/entities/catalogo-pagina-mapeamento';
+import { CatalogoPaginaMapeamento } from '../../../entities/catalogo-pagina-mapeamento';
 import { APP_CONFIG, IConfigToken } from '../../../utils/app-config';
 
 const CACHE_SIZE = 1;

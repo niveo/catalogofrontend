@@ -19,8 +19,6 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
-import { BolHumanPipe } from 'src/app/pipes/bolhuman.pipe';
-import { environment } from 'src/environments/environment.development';
 import { FilesizebrPipe } from '../../pipes/filesizebr.pipe';
 import { CatalogosRoutingModule } from './catalago-routing.module';
 import { CatalogoComponent } from './catalogo.component';
@@ -32,6 +30,7 @@ import { CatalogoPaginasComponent } from './paginas/catalogo-paginas.component';
 import { CatalogoPaginaMapeamentoService } from './services/catalogo-pagina-mapeamento.service';
 import { CatalogoPaginaService } from './services/catalogo-pagina.service';
 import { CatalogoService } from './services/catalogo.service';
+import { environment } from '../../../environments/environment';
 
 @NgModule({
   imports: [
@@ -55,7 +54,6 @@ import { CatalogoService } from './services/catalogo.service';
     FilesizebrPipe,
     NzCardModule,
     NzAvatarModule,
-    BolHumanPipe,
     NzEmptyModule,
     AngularCropperjsModule,
     ImagekitioAngularModule.forRoot({

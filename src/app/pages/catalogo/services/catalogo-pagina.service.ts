@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, finalize } from 'rxjs';
-import { CatalogoPagina } from 'src/app/entities/catalogo-pagina';
+import { CatalogoPagina } from '../../../entities/catalogo-pagina';
 import { APP_CONFIG, IConfigToken } from '../../../utils/app-config';
 import { CatalogoPaginaMapeamentoService } from './catalogo-pagina-mapeamento.service';
 

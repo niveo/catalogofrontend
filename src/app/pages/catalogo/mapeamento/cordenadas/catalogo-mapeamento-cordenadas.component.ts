@@ -8,11 +8,10 @@ import {
 } from '@angular/core';
 import { faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { NZ_DRAWER_DATA, NzDrawerRef } from 'ng-zorro-antd/drawer';
-import { NzModalRef } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { finalize } from 'rxjs';
-import { MS3, MS4, MS5 } from 'src/app/contantes/messages';
-import { ProdutoService } from 'src/app/pages/produto/services/produto.service';
+import { MS3, MS4, MS5 } from '../../../../contantes/messages';
+import { ProdutoService } from '../../../../pages/produto/services/produto.service';
 
 const posicaoNotificacao = {
   nzPlacement: 'bottomRight',
