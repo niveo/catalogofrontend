@@ -6,7 +6,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { faSignOut, faUser } from '@fortawesome/free-solid-svg-icons';
@@ -19,7 +18,6 @@ import { faSignOut, faUser } from '@fortawesome/free-solid-svg-icons';
   imports: [
     NzButtonModule,
     CommonModule,
-    NzIconModule,
     NzAvatarModule,
     NzToolTipModule,
     NzPopoverModule,

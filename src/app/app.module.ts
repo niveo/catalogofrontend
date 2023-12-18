@@ -14,8 +14,7 @@ import { AppComponent } from './app.component';
 
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzButtonModule } from 'ng-zorro-antd/button'; 
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
@@ -59,8 +58,7 @@ registerLocaleData(pt);
 
     NzTypographyModule,
     NzMenuModule,
-    NzButtonModule,
-    NzIconModule,
+    NzButtonModule, 
     NzAvatarModule,
     NzToolTipModule,
 
