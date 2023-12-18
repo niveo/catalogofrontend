@@ -15,8 +15,7 @@ yarn-error.log
 
 .env
 
-auth_config-dev.json
-auth_config-prod.json
+auth_config.json
 
 # IDEs and editors
 .idea/

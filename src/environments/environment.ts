@@ -1,23 +1,23 @@
+import config from '../../auth_config.json';
+
 export const environment = {
-  production: true,
+  production: false,
   auth: {
-    domain: process.env['AUTH_DOMAIN'],
-    clientId: process.env['AUTH_CLIEND_ID'],
+    domain: config.domain,
+    clientId: config.clientId,
     authorizationParams: {
-      audience: process.env['AUTH_AUDIENCE'],
+      audience: config.authorizationParams.audience,
       redirect_uri: window.location.origin,
     },
-    errorPath: process.env['AUTH_ERROR_PATH'],
+    errorPath: config.errorPath,
   },
-  apiUri: process.env['API_URI'],
+  apiUri: config.apiUri,
   httpInterceptor: {
-    allowedList: [`${process.env['API_URI']}/*`],
+    allowedList: [`${config.apiUri}/*`],
   },
-  imageKitPublicKey: process.env['IMAGEKIT_PUBLIC_KEY'],
-  imageKitUrlEndPoint: process.env['IMAGEKIT_URLENDPOINT'],
-  imageKitUrlEndPointCatalogo:
-    process.env['IMAGEKIT_URLENDPOINT'] + '/catalogo/',
-  imageKitUrlEndPointCatalogos:
-    process.env['IMAGEKIT_URLENDPOINT'] + '/catalogo/catalogos/',
+  imageKitPublicKey: config.imageKitPublicKey,
+  imageKitUrlEndPoint: config.imageKitUrlEndPoint,
+  imageKitUrlEndPointCatalogo: config.imageKitUrlEndPointCatalogo,
+  imageKitUrlEndPointCatalogos: config.imageKitUrlEndPointCatalogos,
   //imageKitAuthenticationEndpoint: imageKitAuthenticationEndpoint,
 };
