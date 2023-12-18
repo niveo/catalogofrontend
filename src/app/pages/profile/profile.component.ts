@@ -4,7 +4,7 @@ import { AuthService } from '@auth0/auth0-angular';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { firstValueFrom } from 'rxjs';
 import { MS1, MS2 } from '../../contantes/messages';
-import { APP_CONFIG, IConfigToken } from 'src/app/utils/app-config';
+import { APP_CONFIG, IConfigToken } from '../../utils/app-config';
 
 @Component({
   selector: 'app-profile-component',

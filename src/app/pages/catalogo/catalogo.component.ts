@@ -9,8 +9,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Observable, Subject, finalize, merge, mergeMap } from 'rxjs';
-import { MS6, MS7 } from 'src/app/contantes/messages';
-import { Catalogo } from 'src/app/entities/catalogo';
+import { MS6, MS7 } from '../../contantes/messages';
+import { Catalogo } from '../../entities/catalogo';
 import { APP_CONFIG, IConfigToken } from '../../utils/app-config';
 import { CatalogoService } from './services/catalogo.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';

@@ -1,22 +1,15 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   faTrash,
   faUpRightFromSquare,
 } from '@fortawesome/free-solid-svg-icons';
 import { NZ_DRAWER_DATA, NzDrawerRef } from 'ng-zorro-antd/drawer';
-import {
-  BehaviorSubject,
-  Observable,
-  Subject,
-  finalize,
-  merge,
-  mergeMap,
-} from 'rxjs';
-import { CatalogoPaginaMapeamentoService } from '../../services/catalogo-pagina-mapeamento.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { Produto } from 'src/app/entities/produto';
-import { CatalogoPaginaMapeamento } from 'src/app/entities/catalogo-pagina-mapeamento';
-import { MS5 } from 'src/app/contantes/messages';
+import { Observable, Subject, finalize, merge, mergeMap } from 'rxjs';
+import { MS5 } from '../../../../contantes/messages';
+import { CatalogoPaginaMapeamento } from '../../../../entities/catalogo-pagina-mapeamento';
+import { Produto } from '../../../../entities/produto';
+import { CatalogoPaginaMapeamentoService } from '../../services/catalogo-pagina-mapeamento.service';
 
 @Component({
   selector: 'app-mapeamento-produtos-cordenada-component',

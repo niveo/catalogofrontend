@@ -8,11 +8,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Observable, Subject, finalize, merge, mergeMap } from 'rxjs';
-import { Produto } from 'src/app/entities/produto';
+import { Produto } from '../../entities/produto';
 import { ProdutoImportarComponent } from './importar/produto-importar.component';
 import { ProdutoService } from './services/produto.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { MS7 } from 'src/app/contantes/messages';
+import { MS7 } from '../../contantes/messages';
 
 @Component({
   selector: 'app-produto-component',
