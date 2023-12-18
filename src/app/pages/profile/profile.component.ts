@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { firstValueFrom } from 'rxjs';
 import { MS1, MS2 } from '../../contantes/messages';
+import { APP_CONFIG, IConfigToken } from 'src/app/utils/app-config';
 
 @Component({
   selector: 'app-profile-component',
@@ -15,7 +16,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     public readonly auth: AuthService,
     private readonly http: HttpClient,
-    private notification: NzNotificationService
+    private notification: NzNotificationService,
+    @Inject(APP_CONFIG) private readonly conf: IConfigToken
   ) {}
 
   ngOnInit() {
@@ -26,7 +28,7 @@ export class ProfileComponent implements OnInit {
 
   async importarDadosBasicos() {
     this.http
-      .get('/registeredUser', {
+      .get(this.conf.apiUri + '/registeredUser', {
         params: {
           user_id: (await firstValueFrom(this.auth.user$)).sub,
         },

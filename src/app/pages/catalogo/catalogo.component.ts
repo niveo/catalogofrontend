@@ -59,7 +59,7 @@ export class CatalogoComponent implements OnInit {
   }
 
   visualizar(catalogo: Catalogo) {
-    this.router.navigateByUrl('catalogo/detalhe/' + catalogo.id);
+    this.router.navigateByUrl('catalogo/paginas/' + catalogo.id);
   }
 
   editar(catalogo: Catalogo) {

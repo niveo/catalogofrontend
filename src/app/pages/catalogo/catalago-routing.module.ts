@@ -9,12 +9,12 @@ import {
 import { AuthGuard } from '@auth0/auth0-angular';
 import { Catalogo } from 'src/app/entities/catalogo';
 import { CatalogoPagina } from 'src/app/entities/catalogo-pagina';
-import { CatalogoComponent } from './catalogo.component';
-import { CatalogoDetalheComponent } from './detalhe/catalogo-detalhe.component';
+import { CatalogoComponent } from './catalogo.component'; 
 import { CatalogoMapeamentoComponent } from './mapeamento/catalogo-mapeamento.component';
 import { CatalogoPaginaService } from './services/catalogo-pagina.service';
 import { CatalogoService } from './services/catalogo.service';
 import { CatalogoImportarComponent } from './importar/catalogo-importar.component';
+import { CatalogoPaginasComponent } from './paginas/catalogo-paginas.component';
 
 const catalogoDetalhePaginaResolver: ResolveFn<CatalogoPagina> = (
   route: ActivatedRouteSnapshot,
@@ -39,8 +39,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'detalhe/:id',
-    component: CatalogoDetalheComponent,
+    path: 'paginas/:id',
+    component: CatalogoPaginasComponent,
     canActivate: [AuthGuard],
     resolve: {
       data: catalogoDetalheResolver,

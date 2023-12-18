@@ -4,11 +4,11 @@ import { Catalogo } from 'src/app/entities/catalogo';
 import { APP_CONFIG, IConfigToken } from 'src/app/utils/app-config';
 
 @Component({
-  selector: 'app-catalogo-detalhe-component',
-  templateUrl: './catalogo-detalhe.component.html',
-  styleUrl: './catalogo-detalhe.component.scss',
+  selector: 'app-catalogo-paginas-component',
+  templateUrl: './catalogo-paginas.component.html',
+  styleUrl: './catalogo-paginas.component.scss',
 })
-export class CatalogoDetalheComponent implements OnInit {
+export class CatalogoPaginasComponent implements OnInit {
   catalogo?: Catalogo;
 
   constructor(

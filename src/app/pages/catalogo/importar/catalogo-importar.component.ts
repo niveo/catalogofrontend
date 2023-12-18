@@ -72,7 +72,7 @@ export class CatalogoImportarComponent {
           },
           next: (value) => {
             this.notification.success('Importador', MS1);
-            this.router.navigateByUrl('catalogo/detalhe/' + value);
+            this.router.navigateByUrl('catalogo/paginas/' + value);
           },
         });
     } else {
