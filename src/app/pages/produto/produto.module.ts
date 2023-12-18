@@ -18,6 +18,7 @@ import { ProdutoImportarComponent } from './importar/produto-importar.component'
 import { ProdutoRoutingModule } from './produto-routing.module';
 import { ProdutoComponent } from './produto.component';
 import { ProdutoService } from './services/produto.service';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { ProdutoService } from './services/produto.service';
     NzModalModule,
     NzListModule,
     NzCardModule,
+    NzEmptyModule,
   ],
   declarations: [ProdutoComponent, ProdutoImportarComponent],
   providers: [ProdutoService],

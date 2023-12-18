@@ -31,6 +31,7 @@ import { MapeamentoProdutosCordenadaComponent } from './mapeamento/produtos-cord
 import { BolHumanPipe } from 'src/app/pipes/bolhuman.pipe';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 
 @NgModule({
   imports: [
@@ -55,6 +56,7 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
     NzCardModule,
     NzAvatarModule,
     BolHumanPipe,
+    NzEmptyModule,
     AngularCropperjsModule,
     ImagekitioAngularModule.forRoot({
       publicKey: environment.imageKitPublicKey,

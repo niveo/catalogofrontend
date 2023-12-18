@@ -55,7 +55,6 @@
   padding: 5px;
 }
 
-
 .pdb-10 {
   padding-bottom: 10px;
 }
@@ -64,10 +63,19 @@
   gap: 5px;
 }
 
-.ovh{
+.ovh {
   overflow: hidden;
 }
 
-.ova{
+.ova {
   overflow: auto;
+}
+
+.center-panel {
+  top: 40px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
