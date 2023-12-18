@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Observable, Subject, shareReplay, takeUntil, tap } from 'rxjs';
 import { CatalogoPaginaMapeamento } from 'src/app/entities/catalogo-pagina-mapeamento';
+import { APP_CONFIG, IConfigToken } from '../../../utils/app-config';
 
 const CACHE_SIZE = 1;
 
@@ -9,7 +10,10 @@ const CACHE_SIZE = 1;
 export class CatalogoPaginaMapeamentoService {
   private cacheMapeamentoProdutosCordenadas$: Observable<CatalogoPaginaMapeamento>;
   private reload$ = new Subject<void>();
-  constructor(private readonly http: HttpClient) {}
+  constructor(
+    private readonly http: HttpClient,
+    @Inject(APP_CONFIG) private readonly conf: IConfigToken
+  ) {}
 
   getMapeamentoProdutosCordenadas(
     id: number
@@ -32,13 +36,13 @@ export class CatalogoPaginaMapeamentoService {
 
   private requestMapeamentoProdutosCordenadas(id: number) {
     return this.http.get<CatalogoPaginaMapeamento>(
-      `/catalogo_pagina_mapeamento/lista/${id}`
+      `${this.conf.apiUri}/catalogo_pagina_mapeamento/lista/${id}`
     );
   }
 
   deleteProdutoCordenada(id: number, produto: number): Observable<any> {
     return this.http
-      .delete(`/catalogo_pagina_mapeamento/deleteMapeado`, {
+      .delete(`${this.conf.apiUri}/catalogo_pagina_mapeamento/deleteMapeado`, {
         params: {
           id: id,
           produto: produto,
@@ -49,7 +53,10 @@ export class CatalogoPaginaMapeamentoService {
 
   lancarCordenada(cordenada: CatalogoPaginaMapeamento) {
     return this.http
-      .post<CatalogoPaginaMapeamento>(`/catalogo_pagina_mapeamento`, cordenada)
+      .post<CatalogoPaginaMapeamento>(
+        `${this.conf.apiUri}/catalogo_pagina_mapeamento`,
+        cordenada
+      )
       .pipe(tap(() => this.forceReload()));
   }
 }

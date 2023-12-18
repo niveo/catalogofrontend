@@ -36,20 +36,12 @@ export class NavBarProfileComponent {
     @Inject(DOCUMENT) public document: Document,
     public readonly auth: AuthService,
     private router: Router
-  ) {
-    this.auth.idTokenClaims$.subscribe((sb) => {
-      sessionStorage.setItem('TOKEN', sb!.__raw!);
-    });
-  }
+  ) {}
 
   logOut() {
-    this.auth
-      .logout({
-        logoutParams: { returnTo: this.document.location.origin },
-      })
-      .subscribe(() => {
-        sessionStorage.removeItem('TOKEN');
-      });
+    this.auth.logout({
+      logoutParams: { returnTo: this.document.location.origin },
+    });
   }
 
   goProfile() {
