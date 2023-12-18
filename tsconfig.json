@@ -23,6 +23,8 @@
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
+    "typeRoots": ["node_modules/@types"],
+    "types": ["node" ],
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
