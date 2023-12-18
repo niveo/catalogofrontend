@@ -1,5 +1,5 @@
 <div class="fx-column" style="padding: 10px" *ngIf="auth.user$ | async as user">
-  <div class="fx-row">
+  <div class="fx-row gap-5">
     <div class="col-md-2">
       <nz-avatar [nzSize]="64" nzIcon="user" [nzSrc]="user.picture"></nz-avatar>
     </div>
@@ -15,5 +15,9 @@
     ><code class="json" [highlight]="profileJson"></code></pre>
   </div>
 
-  <button nz-button nzType="primary" (click)="importarDadosBasicos()">Importar Dados Basicos</button>
+  <div>
+    <button nz-button nzType="primary" (click)="importarDadosBasicos()" [nzLoading]="loading">
+      Importar Dados Basicos
+    </button>
+  </div>
 </div>

@@ -14,10 +14,9 @@ import { AppComponent } from './app.component';
 
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NzButtonModule } from 'ng-zorro-antd/button'; 
+import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { HomeLogoButtonComponenet } from './componentes/home-logo-button/home-logo.button.component';
@@ -28,7 +27,7 @@ import { ErrorComponent } from './pages/error/error.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProdutoModule } from './pages/produto/produto.module';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { APP_CONFIG } from './utils/app-config';
+import { APP_CONFIG } from './utils/app-config'; 
 
 registerLocaleData(pt);
 
@@ -55,10 +54,9 @@ registerLocaleData(pt);
     HomeLogoButtonComponenet,
     LoadingComponent,
     ErrorComponent,
-
-    NzTypographyModule,
+ 
     NzMenuModule,
-    NzButtonModule, 
+    NzButtonModule,
     NzAvatarModule,
     NzToolTipModule,
 
