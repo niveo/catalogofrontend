@@ -4,8 +4,6 @@ const setEnv = () => {
   // Configure Angular `environment.ts` file path
   const targetPath = './src/environments/environment.ts';
   // Load node modules
-  const colors = require('colors');
-  const appVersion = require('../../package.json').version;
   require('dotenv').config({
     path: 'src/environments/.env',
   });
@@ -33,20 +31,16 @@ const setEnv = () => {
     };
   `;
   console.log(
-    colors.magenta(
-      'The file `environment.ts` will be written with the following content: \n'
-    )
+    'The file `environment.ts` will be written with the following content: \n'
   );
-  console.log(colors.grey(envConfigFile));
+  console.log(envConfigFile);
   writeFile(targetPath, envConfigFile, (err) => {
     if (err) {
       console.error(err);
       throw err;
     } else {
       console.log(
-        colors.magenta(
-          `Angular environment.ts file generated correctly at ${targetPath} \n`
-        )
+        `Angular environment.ts file generated correctly at ${targetPath} \n`
       );
     }
   });
