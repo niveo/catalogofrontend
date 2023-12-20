@@ -13,7 +13,10 @@ export const environment = {
   },
   apiUri: config.apiUri,
   httpInterceptor: {
-    allowedList: [`${config.apiUri}/*`],
+    allowedList: [
+      'http://localhost:4200/*',
+      'https://catalogofrontend.vercel.app/*',
+    ],
   },
   imageKitPublicKey: config.imageKitPublicKey,
   imageKitUrlEndPoint: config.imageKitUrlEndPoint,

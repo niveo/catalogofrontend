@@ -20,7 +20,7 @@ const setEnv = () => {
     },
     apiUri: '${process.env['API_URI']}',
     httpInterceptor: { 
-      allowedList: ['${process.env['API_URI']}/*']
+      allowedList: ['http://localhost:4200/*', 'https://catalogofrontend.vercel.app/*']
     },
     imageKitPublicKey: '${process.env['IMAGEKIT_PUBLIC_KEY']}',
     imageKitUrlEndPoint: '${process.env['IMAGEKIT_URLENDPOINT']}',
