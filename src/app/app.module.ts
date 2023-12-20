@@ -64,9 +64,6 @@ registerLocaleData(pt);
 
     AuthModule.forRoot({
       ...environment.auth,
-      authorizationParams: {
-        redirect_uri: window.location.origin
-      },
       httpInterceptor: {
         ...environment.httpInterceptor,
       },

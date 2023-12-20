@@ -1,23 +1,39 @@
-<div class="fx-column" style="padding: 10px" *ngIf="auth.user$ | async as user">
-  <div class="fx-row gap-5">
-    <div class="col-md-2">
-      <nz-avatar [nzSize]="64" nzIcon="user" [nzSrc]="user.picture"></nz-avatar>
-    </div>
-    <div class="col-md">
-      <h2>{{ user.name }}</h2>
-      <p class="lead text-muted">{{ user.email }}</p>
-      <p class="lead text-muted">{{ userId$ | async }}</p>
-    </div>
-  </div>
+<div class="fx-column hf" style="padding: 10px" *ngIf="auth.user$ | async as user">
+  <div class="fx-flex hf ovh">
+    <div class="hf ova">
+      <div class="fx-row gap-5">
+        <div class="col-md-2">
+          <nz-avatar
+            [nzSize]="64"
+            nzIcon="user"
+            [nzSrc]="user.picture"
+          ></nz-avatar>
+        </div>
+        <div class="col-md">
+          <h2>{{ user.name }}</h2>
+          <p class="lead text-muted">{{ user.email }}</p>
+        </div>
+      </div>
 
-  <div class="row" *ngIf="profileJson">
-    <pre
-      class="rounded"
-    ><code class="json" [highlight]="profileJson"></code></pre>
+      <div class="row" *ngIf="profileJson">
+        <pre
+          class="rounded"
+        ><code class="json" [highlight]="profileJson"></code></pre>
+      </div>
+
+      @if(userId$){
+      <pre><code>{{ userId$ | async | json }}</code></pre>
+      }
+    </div>
   </div>
 
   <div>
-    <button nz-button nzType="primary" (click)="importarDadosBasicos()" [nzLoading]="loading">
+    <button
+      nz-button
+      nzType="primary"
+      (click)="importarDadosBasicos()"
+      [nzLoading]="loading"
+    >
       Importar Dados Basicos
     </button>
   </div>
