@@ -14,6 +14,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 export class ProfileComponent implements OnInit {
   profileJson?: string;
   loading = false;
+  userId$
 
   constructor(
     public readonly auth: AuthService,
@@ -27,6 +28,7 @@ export class ProfileComponent implements OnInit {
     this.auth.user$.subscribe(
       (profile) => (this.profileJson = JSON.stringify(profile, null, 2))
     );
+    this.userId$ = this.http.get(`${this.conf.apiUri}/userid`);
   }
 
   async importarDadosBasicos() {
