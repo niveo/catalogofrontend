@@ -24,10 +24,10 @@ export class ProfileComponent implements OnInit {
     private readonly nzModalService: NzModalService
   ) {}
 
-  ngOnInit() {
-    this.auth.user$.subscribe(
-      (profile) => (this.profileJson = JSON.stringify(profile, null, 2))
-    );
+  async ngOnInit() {
+    this.auth.user$.subscribe((profile) => {
+      this.profileJson = JSON.stringify(profile, null, 2);
+    });
     this.userId$ = this.http.get(`${this.conf.apiUri}/userprofile`);
   }
 

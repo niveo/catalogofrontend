@@ -27,7 +27,8 @@ import { ErrorComponent } from './pages/error/error.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProdutoModule } from './pages/produto/produto.module';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { APP_CONFIG } from './utils/app-config'; 
+import { APP_CONFIG } from './utils/app-config';
+import { HttpsRequestInterceptor } from './interceptors/requests.interceptor';
 
 registerLocaleData(pt);
 
@@ -54,7 +55,7 @@ registerLocaleData(pt);
     HomeLogoButtonComponenet,
     LoadingComponent,
     ErrorComponent,
- 
+
     NzMenuModule,
     NzButtonModule,
     NzAvatarModule,
@@ -75,6 +76,11 @@ registerLocaleData(pt);
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthHttpInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpsRequestInterceptor,
       multi: true,
     },
     {
