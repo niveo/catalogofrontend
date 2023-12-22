@@ -1,5 +1,5 @@
 import { CommonModule, DOCUMENT } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@auth0/auth0-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -25,7 +25,7 @@ import { faSignOut, faUser } from '@fortawesome/free-solid-svg-icons';
     FontAwesomeModule,
   ],
 })
-export class NavBarProfileComponent {
+export class NavBarProfileComponent implements OnInit {
   visible: boolean = false;
   faSignOut = faSignOut;
   faUser = faUser;
@@ -35,6 +35,12 @@ export class NavBarProfileComponent {
     public readonly auth: AuthService,
     private router: Router
   ) {}
+
+  ngOnInit() {
+    this.auth.user$.subscribe((data) => {
+      sessionStorage.setItem('USER_ID', data.sub);
+    });
+  }
 
   logOut() {
     this.auth.logout({
